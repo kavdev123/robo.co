@@ -25,7 +25,7 @@
             font-family: 'Press Start 2P', cursive;
         }
 
-        H5 {
+        h5 {
             font-family: 'Press Start 2P', cursive
         }
 
@@ -132,6 +132,12 @@
         .cart-section {
             display: none;
         }
+
+        #cart-list img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -173,15 +179,13 @@
                 <h1>Our Vision</h1>
                 <p>We aim to empower innovators with hands-on skills in PC assembly and robotics engineering. We create a
                     culture of curiosity and collaboration for future tech pioneers.<br>
-                    <h2>Unleash the creator in you.<h2>
+                    <h2>Unleash the creator in you.</h2>
                 </p>
             </section>
 
-            <!-- Robotics Kits Section -->
             <section id="kits" class='section-content'>
                 <h2>Robotics Kits</h2>
                 <div class='row'>
-                    <!-- Arduino Kit -->
                     <div class='col-md-4'>
                         <div class='card mb-4 shadow-sm'>
                             <img src='https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png'
@@ -189,15 +193,14 @@
                             <div class='card-body'>
                                 <h5>Arduino Kit (UNO R3)</h5>
                                 <p>A comprehensive kit for learning Arduino programming and building projects.</p>
-                                <button type='button' class='btn btn-primary' onclick='addToCart("Arduino Kit (R3)")'>Add
-                                    R3</button>
-                                <button type='button' class='btn btn-primary' onclick='addToCart("Arduino Kit (R4)")'>Add
-                                    R4</button>
+                                <button type='button' class='btn btn-primary'
+                                    onclick='addToCart("Arduino Kit (R3)", "https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png")'>Add R3</button>
+                                <button type='button' class='btn btn-primary'
+                                    onclick='addToCart("Arduino Kit (R4)", "https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png")'>Add R4</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Raspberry Pi Kit -->
                     <div class='col-md-4'>
                         <div class='card mb-4 shadow-sm'>
                             <img src='https://m.media-amazon.com/images/I/71u2Od-VqZL.jpg' alt='Raspberry Pi Kit'
@@ -206,44 +209,40 @@
                                 <h5>Raspberry Pi Advanced AI Kit</h5>
                                 <p>Explore computing with Raspberry Pi, perfect for beginners and experts alike.</p>
                                 <button type='button' class='btn btn-primary'
-                                    onclick='addToCart("Raspberry Pi (4GB)")'>Add 4GB</button>
+                                    onclick='addToCart("Raspberry Pi (4GB)", "https://m.media-amazon.com/images/I/71u2Od-VqZL.jpg")'>Add 4GB</button>
                                 <button type='button' class='btn btn-primary'
-                                    onclick='addToCart("Raspberry Pi (8GB)")'>Add 8GB</button>
+                                    onclick='addToCart("Raspberry Pi (8GB)", "https://m.media-amazon.com/images/I/71u2Od-VqZL.jpg")'>Add 8GB</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ESP Kit -->
                     <div class='col-md-4'>
                         <div class='card mb-4 shadow-sm'>
-                            <img src="https://ce8dc832c.cloudimg.io/v7/_cdn_/B4/97/C0/00/0/817483_1.jpg?width=640&height=480&wat=1&wat_url=_tme-wrk_%2Ftme_new.png&wat_scale=100p&ci_sign=a6c2514d0c9eb1c253c1ed8d34f83dff5c770d24"
-                                alt="ESP Kit" class='card-img-top'>
+                            <img src="https://ce8dc832c.cloudimg.io/v7/_cdn_/B4/97/C0/00/0/817483_1.jpg?width=640&height=480&wat=1&wat_url=_tme-wrk_%2Ftme_new.png&wat_scale=100p&ci_sign=a6c2514d0c9eb1ac8e8000f57499b5ab" alt='ESP Kit'
+                                class='card-img-top'>
                             <div class='card-body'>
-                                <h5>ESP Kit (ESP32)</h5>
-                                <p>Dive into IoT with our ESP kit, designed for innovative projects.</p>
+                                <h5>ESP8266/ESP32 Development Kit</h5>
+                                <p>Start IoT projects with this versatile ESP kit.</p>
                                 <button type='button' class='btn btn-primary'
-                                    onclick='addToCart("ESP32 Basic Kit")'>Add Basic</button>
+                                    onclick='addToCart("ESP8266 Kit", "https://ce8dc832c.cloudimg.io/v7/_cdn_/B4/97/C0/00/0/817483_1.jpg?width=640&height=480&wat=1&wat_url=_tme-wrk_%2Ftme_new.png&wat_scale=100p&ci_sign=a6c2514d0c9eb1ac8e8000f57499b5ab")'>Add ESP8266</button>
                                 <button type='button' class='btn btn-primary'
-                                    onclick='addToCart("ESP32 Advanced Kit")'>Add Advanced</button>
+                                    onclick='addToCart("ESP32 Kit", "https://ce8dc832c.cloudimg.io/v7/_cdn_/B4/97/C0/00/0/817483_1.jpg?width=640&height=480&wat=1&wat_url=_tme-wrk_%2Ftme_new.png&wat_scale=100p&ci_sign=a6c2514d0c9eb1ac8e8000f57499b5ab")'>Add ESP32</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Contact Us Section -->
             <section id="contact" class='section-content'>
                 <h2>Contact Us</h2>
-                <p>We would love to hear from you! Reach out with any questions or feedback.</p>
+                <p>For inquiries, please email us at: <a href="mailto:support@robo.co">support@robo.co</a></p>
             </section>
 
-            <!-- Donate Now Section -->
             <section id="donate" class='section-content'>
-                <h2>Donate Now</h2>
-                <p>Support our mission to bring robotics education to everyone.</p>
+                <h2>Support Us</h2>
+                <p>Your contributions help us provide better resources and workshops. <a href="#">Donate Now</a></p>
             </section>
 
-            <!-- Cart Section -->
             <section id="cart" class='section-content'>
                 <h2>Your Cart</h2>
                 <ul id="cart-list"></ul>
@@ -253,35 +252,45 @@
     </main>
 
     <footer class="footer text-center">
-        <div class="container">
-            <p>&copy; 2024 robo.co. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 robo.co. All rights reserved.</p>
     </footer>
 
     <script>
-        const sections = document.querySelectorAll('.section-content');
+        let cart = [];
+
+        function addToCart(item, imageUrl) {
+            const cartItem = {
+                name: item,
+                image: imageUrl
+            };
+            cart.push(cartItem);
+            alert(`${item} added to cart!`);
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cartButton = document.querySelector('.navbar .nav-item button[onclick="showSection(\'cart\')"]');
+            cartButton.textContent = `Cart (${cart.length})`;
+        }
 
         function showSection(sectionId) {
-            sections.forEach((section) => {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
-        }
-
-        let cart = [];
-
-        function addToCart(item) {
-            cart.push(item);
-            alert(`${item} added to cart!`);
+            if (sectionId === 'cart') {
+                showCart();
+            }
         }
 
         function showCart() {
-            document.getElementById('cart-section').style.display = 'block';
             const cartList = document.getElementById('cart-list');
             cartList.innerHTML = '';
             cart.forEach((item) => {
                 const li = document.createElement('li');
-                li.textContent = item;
+                li.innerHTML = `<img src="${item.image}" alt="${item.name}">
+                                ${item.name}`;
                 cartList.appendChild(li);
             });
         }
@@ -290,14 +299,14 @@
             if (cart.length === 0) {
                 alert('Your cart is empty.');
             } else {
-                alert(`You have ${cart.length} item(s) in your cart: ${cart.join(', ')}`);
-                // Here, you can add the logic to proceed to the checkout page.
+                alert(`You have ${cart.length} item(s) in your cart: ${cart.map(item => item.name).join(', ')}`);
+                // You can proceed to checkout here
             }
         }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
