@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>robo.co - Empowering Robotics Education</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+    <style>
+.ubuntu-mono-regular {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+        body {
+            background-color: #223344; /* Darker background */
+            color: #40e0d0; /* Light text color */
+            font-family: 'Ubuntu Mono', monospace; /* Monospace font for buttons */
+            transition: all 0.3s ease; /* Smooth transition for interactivity */
+        }
+
+        h1,h2 {
+            font-family: 'Press Start 2P', cursive; /* Robo.co font */
+        }
+H5{font-family:'Press Start 2P', cursive}
+
+        /* Navbar */
+        .navbar {
+            background-color: #192841;
+            padding: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .navbar:hover {
+            background-color: #203354;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #40e0d0;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #00ffff;
+        }
+
+        .nav-item button {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Jumbotron */
+        .jumbotron {
+            background-color: #FF5757; /* Darker jumbotron */
+            color: #223344;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 20px;
+        }
+
+        /* Card Hover Effect */
+        .card {
+            background-color: #222; /* Darker card background */
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Lift effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6); /* Dark shadow */
+        }
+
+        .card h5 {
+            color: #40e0d0;
+        }
+
+        /* Footer Interaction */
+        .footer {
+            background-color: #272523;
+            color: white;
+            padding: 10px;
+            height: 37px;
+        }
+
+        /* Button Customization */
+        .btn-custom {
+            background-color:#40e0d0; /* Gradient color */
+            border: none;
+            color: #223344;
+            font-family:"Ubuntu Mono",monospace
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+        }
+
+        .btn-custom:hover {
+            background-color:#ff5757; /* Reverse gradient on hover */
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
+        }
+
+        /* Section Reveal Animation */
+        .section-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .section-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scrolling for better navigation */
+        html {
+            scroll-behavior: smooth;
+
+        }
+a{font-family:'Press Start 2P', cursive;}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">robo.co</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><button class='btn btn-custom' onclick='showSection("about")'>About Us</button></li>&nbsp;
+                        <li class="nav-item"><button class='btn btn-custom' onclick='showSection("kits")'>Robotics Kits</button></li>&nbsp;
+                        <li class="nav-item"><button class='btn btn-custom' onclick='showSection("contact")'>Contact Us</button></li>&nbsp;
+                        <li class="nav-item"><button class='btn btn-custom' onclick='showSection("donate")'>Donate Now</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="jumbotron">
+            <h1 class="jumbotron-heading">Welcome to robo.co</h1>
+            <p class="lead">Empowering the next generation of robotics enthusiasts.</p>
+        </section>
+
+        <div class="container">
+            <!-- About Section -->
+            <section id="about" class='section-content active'>
+                <h1>Our Vision</h1>
+                <p>Our vision for a PC building and robotics teaching company is to empower the next generation of innovators with hands-on, real-world skills that bridge the gap between technology and creativity. We aim to create an interactive learning environment where enthusiasts of all ages can dive into the intricacies of PC assembly and robotics engineering. Through comprehensive workshops and personalized mentorship, we strive to cultivate a community of problem solvers who are not only adept at building cutting-edge systems but are also inspired to push the boundaries of what's possible in tech. By fostering a culture of curiosity and collaboration, we envision a future where our students become the pioneers of tomorrow's technological advancements.<br>
+<h2>Unleash the creator in you.<h2>
+</p>
+            </section>
+
+            <!-- Robotics Kits Section -->
+            <section id="kits" class='section-content'>
+                <h2>Robotics Kits</h2>
+                <div class='row'>
+                    <!-- Arduino Kit -->
+                    <div class='col-md-4'>
+                        <div class='card mb-4 shadow-sm'>
+                            <img src='https://cdn.sparkfun.com/assets/9/1/e/4/8/515b4656ce395f8a38000000.png' alt='Arduino Kit' class='card-img-top'>
+                            <div class='card-body'>
+                                <h5>Arduino Kit (UNO R3)</h5>
+                                <p>A comprehensive kit for learning Arduino programming and building projects.</p>
+                                <button type='button' class='btn btn-primary' onclick='addToCart("Arduino Kit")'>Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raspberry Pi Kit -->
+                    <div class='col-md-4'>
+                        <div class='card mb-4 shadow-sm'>
+                            <img src='https://m.media-amazon.com/images/I/71u2Od-VqZL.jpg' alt='Raspberry Pi Kit' class='card-img-top'>
+                            <div class='card-body'>
+                                <h5>Raspberry Pi Advanced AI Kit (8GB RAM)</h5>
+                                <p>Explore computing with our Raspberry Pi kit, perfect for beginners and experts alike.</p>
+                                <button type='button' class='btn btn-primary' onclick='addToCart("Raspberry Pi Kit")'>Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ESP Kit -->
+                    <div class='col-md-4'>
+                        <div class='card mb-4 shadow-sm'>
+                            <img src="https://ce8dc832c.cloudimg.io/v7/_cdn_/B4/97/C0/00/0/817483_1.jpg?width=640&height=480&wat=1&wat_url=_tme-wrk_%2Ftme_new.png&wat_scale=100p&ci_sign=a6c2514d0c9eb1c253c1ed8d34f83dff5c770d24" alt="ESP Kit" class='card-img-top'>
+                            <div class='card-body'>
+                                <h5>ESP Kit (ESP32)</h5>
+                                <p>Dive into IoT with our ESP kit, designed for innovative projects.</p>
+                                <button type='button' class='btn btn-primary' onclick='addToCart("ESP Kit")'>Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Items in Cart:</h3>
+                <ul id="cart-list"></ul>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class='section-content'>
+                <h2>Contact Us</h2>
+                <form action="#" method='post'>
+                    <div class='form-group'>
+                        <label for='name'>Name:</label>
+                        <input type='text' id='name' name='name' required placeholder='Your Name' class='form-control'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='email'>Email:</label>
+                        <input type='email' id='email' name='email' required placeholder='Your Email' class='form-control'>
+                    </div>
+                    <div class='form-group'>
+                        <label for='message'>Message:</label>
+                        <textarea id='message' name='message' required placeholder='Your Message' rows='4' class='form-control'></textarea>
+                    </div>
+                    <button type='submit' class='btn btn-primary'>Submit</button>
+                </form>
+            </section>
+
+            <!-- Donate Section -->
+            <section id="donate" class='section-content'>
+                <h2>Donate Now</h2>
+                <p>Your generous donations help us continue providing robotics education and create a positive impact on the community. Thank you for your support!</p>
+                <button class='btn btn-custom' onclick='donate()'>Donate</button>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p>&copy; 2024 robo.co. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const cart = [];
+
+        function showSection(section) {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach((sec) => {
+                sec.classList.remove('active');
+            });
+            document.getElementById(section).classList.add('active');
+        }
+
+        function addToCart(item) {
+            cart.push(item);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartList = document.getElementById('cart-list');
+            cartList.innerHTML = '';
+            cart.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                cartList.appendChild(li);
+            });
+        }
+
+        function donate() {
+            alert("Thank you for your willingness to donate! Please visit our donation page for more information.");
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
