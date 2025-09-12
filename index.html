@@ -2,233 +2,263 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>XAZAtech - PC Building</title>
-    <script src="https://kit.fontawesome.com/b338e32605.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-    <style>
-        pre {
-            border-radius: 10px;
-            height: 1000px;
-            width: 1000px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XAZAtech - PC Building</title>
+  <script src="https://kit.fontawesome.com/b338e32605.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #223344;
+      color: #40e0d0;
+      font-family: 'Ubuntu Mono', monospace;
+      transition: all 0.3s ease;
+    }
 
-        body {
-            background-color: #223344;
-            color: #40e0d0;
-            font-family: 'Ubuntu Mono', monospace;
-            transition: all 0.3s ease;
-        }
+    h1, h2, h4, h5, label, select, input, textarea, button {
+      font-family: 'Press Start 2P', cursive !important;
+    }
 
-        h1,
-        h2 {
-            font-family: 'Press Start 2P', cursive;
-        }
+    .company-bar {
+      background-color: #192841;
+      color: #ffffff;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 25px;
+      letter-spacing: 2px;
+      user-select: none;
+    }
 
-        h5,
-        h4 {
-            font-family: 'Press Start 2P', cursive;
-        }
+    .jumbotron {
+      background-color: #FF5757;
+      color: #223344;
+      text-align: center;
+      padding: 50px 20px;
+      border-radius: 20px;
+    }
 
-        .company-bar {
-            background-color: #192841;
-            color: #ffffff;
-            font-family: 'Press Start 2P', cursive;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 25px;
-            letter-spacing: 2px;
-            user-select: none;
-        }
+    /* Shared form container */
+    .section-content {
+      background: #223344;
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .jumbotron {
-            background-color: #FF5757;
-            color: #223344;
-            text-align: center;
-            padding: 50px 20px;
-            border-radius: 20px;
-        }
+    .form-control, select, textarea {
+      background-color: #192841;
+      border: 2px solid #ff5757;
+      color: #40e0d0;
+      height: 45px;
+      font-size: 0.8rem;
+      border-radius: 10px;
+      padding: 12px 15px;
+      transition: all 0.3s ease;
+    }
 
-        div.scroll-container {
-            background-color: #223344;
-        }
+    textarea.form-control {
+      min-height: 100px;
+    }
 
-        .card {
-            background-color: #222;
-            border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .form-control:focus {
+      outline: none;
+      box-shadow: 0 0 10px #ff5757;
+      background-color: #223344;
+    }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-        }
+    .btn-custom {
+      background-color: #40e0d0;
+      border: none;
+      color: #223344;
+      font-family: "Press Start 2P", cursive;
+      font-size: 0.9rem;
+      padding: 12px 25px;
+      border-radius: 50px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 87, 87, 0.5);
+      margin-top: 20px;
+    }
 
-        .card h5 {
-            color: #40e0d0;
-        }
+    .btn-custom:hover {
+      background-color: #ff5757;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 87, 87, 0.8);
+    }
 
-        .footer {
-            background-color: #272523;
-            color: white;
-            padding: 10px;
-            height: 37px;
-            position: relative;
-            text-align: center;
-        }
+    .footer {
+      background-color: #272523;
+      color: white;
+      padding: 10px;
+      height: 37px;
+      position: relative;
+      text-align: center;
+    }
 
-        .btn-custom {
-            background-color: #40e0d0;
-            border: none;
-            color: #223344;
-            font-family: "Ubuntu Mono", monospace;
-            font-size: 1rem;
-            padding: 10px 20px;
-            border-radius: 50px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
-        }
-
-        .btn-custom:hover {
-            background-color: #ff5757;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
-        }
-
-        .section-content {
-            /* Make sure section is visible */
-            display: block !important;
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            transition: none;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        a {
-            font-family: 'Press Start 2P', cursive;
-        }
-    </style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Company bar above jumbotron -->
-    <div class="company-bar">XAZAtech</div>
+  <!-- Company bar above jumbotron -->
+  <div class="company-bar">XAZAtech</div>
 
-    <main>
-        <section class="jumbotron">
-            <h1 class="jumbotron-heading">Think, Aspire, Create</h1>
-            <p class="lead">India's leading PC Building and Repair brand. We build PCs tailored to your personal needs.
-                For a limited time get 10% off on your first build. Order Now.</p>
-        </section>
+  <main>
+    <section class="jumbotron">
+      <h1 class="jumbotron-heading">Think, Aspire, Create</h1>
+      <p class="lead">India's leading PC Building and Repair brand. We build PCs tailored to your personal needs.
+        For a limited time get 10% off on your first build. Order Now.</p>
+    </section>
 
-        <section id="pcbuilder" class="section-content active">
-            <h2>Custom PC Build Request</h2>
-
+    <div class="container">
+      <div class="row">
+        <!-- Custom PC Build Form -->
+        <div class="col-md-6">
+          <section id="pcbuilder" class="section-content">
+            <h2 style="color:#ff5757;">Custom PC Build Request</h2>
             <form id="pcbuild-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" name="name" class="form-control" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" name="email" class="form-control" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="purpose">Purpose of PC *</label>
-                    <select name="purpose" class="form-control" required>
-                        <option value="Gaming">Gaming</option>
-                        <option value="Video Editing">Video Editing</option>
-                        <option value="3D Rendering">3D Rendering</option>
-                        <option value="Programming">Programming</option>
-                        <option value="Office Use">Office Use</option>
-                        <option value="Streaming">Streaming</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="budget">Budget (INR) *</label>
-                    <select name="budget" class="form-control" required>
-                        <option value="Under ₹50,000">Under ₹50,000</option>
-                        <option value="₹50,000 – ₹80,000">₹50,000 – ₹80,000</option>
-                        <option value="₹80,000 – ₹1,20,000">₹80,000 – ₹1,20,000</option>
-                        <option value="₹1,20,000+">₹1,20,000+</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="preferences">Any specific requirements or parts?</label>
-                    <textarea name="preferences" rows="5" class="form-control"></textarea>
-                </div>
-
-                <!-- Optional anti-bot fields -->
-                <input type="hidden" name="_captcha" value="false" />
-
-                <button type="submit" class="btn btn-custom">Submit Request</button>
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" name="name" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" name="email" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="purpose">Purpose of PC *</label>
+                <select name="purpose" class="form-control" required>
+                  <option value="Gaming">Gaming</option>
+                  <option value="Video Editing">Video Editing</option>
+                  <option value="3D Rendering">3D Rendering</option>
+                  <option value="Programming">Programming</option>
+                  <option value="Office Use">Office Use</option>
+                  <option value="Streaming">Streaming</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budget">Budget (INR) *</label>
+                <select name="budget" class="form-control" required>
+                  <option value="Under ₹50,000">Under ₹50,000</option>
+                  <option value="₹50,000 – ₹80,000">₹50,000 – ₹80,000</option>
+                  <option value="₹80,000 – ₹1,20,000">₹80,000 – ₹1,20,000</option>
+                  <option value="₹1,20,000+">₹1,20,000+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="preferences">Any specific requirements or parts?</label>
+                <textarea name="preferences" rows="5" class="form-control"></textarea>
+              </div>
+              <input type="hidden" name="_captcha" value="false" />
+              <button type="submit" class="btn btn-custom">Submit Request</button>
             </form>
-
-            <!-- Thank you message container (hidden by default) -->
-            <div id="thankyou-message" style="display:none; margin-top: 40px; color: #40e0d0;">
-                <h2>Thank You!</h2>
-                <p>Your PC build request has been received. Our team will get back to you shortly with a custom configuration tailored to your needs.</p>
+            <div id="thankyou-message" style="display:none; margin-top: 40px; color: #ff5757;">
+              <h2>Thank You!</h2>
+              <p>Your PC build request has been received. Our team will get back to you shortly with a custom configuration tailored to your needs.</p>
             </div>
-        </section>
-    </main>
+          </section>
+        </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 XAZAtech All rights reserved.</p>
-    </footer>
+        <!-- PC Repair Form -->
+        <div class="col-md-6">
+          <section id="pcrepair" class="section-content">
+            <h2 style="color:#ff5757;">PC Repair Request</h2>
+            <form id="pcrepair-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+              <div class="form-group">
+                <label for="repair-name">Full Name *</label>
+                <input type="text" name="repair-name" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="repair-email">Email Address *</label>
+                <input type="email" name="repair-email" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label for="issue">Type of Issue *</label>
+                <select name="issue" class="form-control" required>
+                  <option value="Hardware Failure">Hardware Failure</option>
+                  <option value="Software Issues">Software Issues</option>
+                  <option value="Overheating">Overheating</option>
+                  <option value="Slow Performance">Slow Performance</option>
+                  <option value="Virus/Malware">Virus / Malware</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="repair-details">Describe Your Issue *</label>
+                <textarea name="repair-details" rows="5" class="form-control" required></textarea>
+              </div>
+              <input type="hidden" name="_captcha" value="false" />
+              <button type="submit" class="btn btn-custom">Submit Request</button>
+            </form>
+            <div id="thankyou-repair" style="display:none; margin-top: 40px; color: #ff5757;">
+              <h2>Thank You!</h2>
+              <p>Your PC repair request has been received. Our team will get back to you shortly with assistance.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <footer class="footer">
+    <p>&copy; 2024 XAZAtech All rights reserved.</p>
+  </footer>
 
-    <script>
-        document.getElementById('pcbuild-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+  <script>
+    // Build form submission
+    document.getElementById('pcbuild-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thankyou-message').style.display = 'block';
+        } else {
+          alert('Oops! There was a problem submitting your form.');
+        }
+      }).catch(error => {
+        alert('Oops! There was a problem submitting your form.');
+        console.error(error);
+      });
+    });
 
-            const form = e.target;
-            const data = new FormData(form);
-
-            fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    form.style.display = 'none';
-                    document.getElementById('thankyou-message').style.display = 'block';
-                } else {
-                    alert('Oops! There was a problem submitting your form.');
-                }
-            }).catch(error => {
-                alert('Oops! There was a problem submitting your form.');
-                console.error(error);
-            });
-        });
-    </script>
+    // Repair form submission
+    document.getElementById('pcrepair-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thankyou-repair').style.display = 'block';
+        } else {
+          alert('Oops! There was a problem submitting your form.');
+        }
+      }).catch(error => {
+        alert('Oops! There was a problem submitting your form.');
+        console.error(error);
+      });
+    });
+  </script>
 </body>
-
 </html>
