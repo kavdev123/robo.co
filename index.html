@@ -49,17 +49,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 40vh; /* reduced from 70vh */
+      height: 40vh;
       background-color: #223344;
       padding: 10px;
-      gap: 20px; /* reduced spacing */
+      gap: 20px;
     }
 
     .home-buttons button {
       flex: 1;
       margin: 0 5px;
-      padding: 80px 20px; /* increased size */
-      font-size: 1.2rem; /* larger text */
+      padding: 80px 20px;
+      font-size: 1.2rem;
       font-family: 'Press Start 2P', cursive;
       color: #223344;
       background-color: #40e0d0;
@@ -78,7 +78,7 @@
     .form-section {
       display: none;
       max-width: 900px;
-      margin: 20px auto; /* reduced margin */
+      margin: 20px auto;
       padding: 20px;
       background-color: #223344;
       border: 2px solid #fff;
@@ -118,7 +118,6 @@
       padding: 15px 35px;
       border-radius: 50px;
       transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
-      box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
       margin-top: 10px;
     }
 
@@ -152,7 +151,23 @@
       color: white;
       padding: 10px;
       text-align: center;
-      margin-top: 10px; /* reduced spacing */
+      margin-top: 10px;
+    }
+
+    .thank-message {
+      display: none;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #223344;
+      border: 2px solid #fff;
+      border-radius: 15px;
+      text-align: center;
+      color: #40e0d0;
+    }
+
+    .thank-message h2 {
+      color: #ff5757;
     }
   </style>
 </head>
@@ -178,7 +193,7 @@
     <!-- Custom PC Build Form -->
     <section id="pcbuilder" class="form-section">
       <h2>Custom PC Build Request</h2>
-      <form id="pcbuild-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+      <form id="pcbuild-form">
         <div class="form-group">
           <label for="name">Full Name *</label>
           <input type="text" name="name" class="form-control" required />
@@ -212,8 +227,7 @@
           <label for="preferences">Any specific requirements or parts?</label>
           <textarea name="preferences" rows="5" class="form-control"></textarea>
         </div>
-        <input type="hidden" name="_captcha" value="false" />
-        <button type="submit" class="btn-custom">Submit Request</button>
+        <button type="button" class="btn-custom" onclick="showThankYou('pcbuilder')">Submit Request</button>
       </form>
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </section>
@@ -221,7 +235,7 @@
     <!-- PC Repair Form -->
     <section id="pcrepair" class="form-section">
       <h2>PC Repair Request</h2>
-      <form id="pcrepair-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+      <form id="pcrepair-form">
         <div class="form-group">
           <label for="name">Full Name *</label>
           <input type="text" name="name" class="form-control" required />
@@ -234,7 +248,7 @@
           <label for="issue">Describe your issue *</label>
           <textarea name="issue" rows="5" class="form-control" required></textarea>
         </div>
-        <button type="submit" class="btn-custom">Submit Repair Request</button>
+        <button type="button" class="btn-custom" onclick="showThankYou('pcrepair')">Submit Repair Request</button>
       </form>
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </section>
@@ -242,7 +256,7 @@
     <!-- Contact Us Section -->
     <section id="contactus" class="form-section">
       <h2>Contact Us</h2>
-      <form id="contact-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+      <form id="contact-form">
         <div class="form-group">
           <label for="name">Full Name *</label>
           <input type="text" name="name" class="form-control" required />
@@ -255,8 +269,27 @@
           <label for="message">Message *</label>
           <textarea name="message" rows="5" class="form-control" required></textarea>
         </div>
-        <button type="submit" class="btn-custom">Send Message</button>
+        <button type="button" class="btn-custom" onclick="showThankYou('contactus')">Send Message</button>
       </form>
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </section>
+
+    <!-- Thank You Messages -->
+    <section id="thank-pcbuilder" class="thank-message">
+      <h2>Thank You!</h2>
+      <p>Your PC build request has been submitted successfully. Our team will contact you shortly.</p>
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </section>
+
+    <section id="thank-pcrepair" class="thank-message">
+      <h2>Thank You!</h2>
+      <p>Your PC repair request has been submitted successfully. Our team will contact you shortly.</p>
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </section>
+
+    <section id="thank-contactus" class="thank-message">
+      <h2>Thank You!</h2>
+      <p>Your message has been sent successfully. We will get back to you soon.</p>
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </section>
   </main>
@@ -270,9 +303,15 @@
       document.querySelector('.home-buttons').style.display = 'none';
       document.getElementById(id).style.display = 'block';
     }
+
     function goHome() {
-      document.querySelectorAll('.form-section').forEach(sec => sec.style.display = 'none');
+      document.querySelectorAll('.form-section, .thank-message').forEach(sec => sec.style.display = 'none');
       document.querySelector('.home-buttons').style.display = 'flex';
+    }
+
+    function showThankYou(formId) {
+      document.getElementById(formId).style.display = 'none';
+      document.getElementById('thank-' + formId).style.display = 'block';
     }
   </script>
 </body>
