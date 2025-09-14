@@ -1,279 +1,279 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PC Builder & Repairs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XAZAtech - PC Building & Repair</title>
+  <script src="https://kit.fontawesome.com/b338e32605.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <style>
     body {
-      margin: 0;
+      background-color: #223344;
+      color: #40e0d0;
+      font-family: 'Ubuntu Mono', monospace;
+    }
+
+    h1,
+    h2,
+    h5,
+    h4,
+    a,
+    label {
       font-family: 'Press Start 2P', cursive;
+    }
+
+    .company-bar {
       background-color: #192841;
       color: #ffffff;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 25px;
+      letter-spacing: 2px;
+      user-select: none;
     }
 
-    /* Jumbotron */
     .jumbotron {
-      background-color: #ff5757;
+      background-color: #FF5757;
       color: #223344;
       text-align: center;
-      padding: 60px 20px;
-      margin-bottom: 20px;
+      padding: 40px 20px;
+      border-radius: 0;
+      margin-bottom: 10px;
     }
 
-    /* Home Button Section */
-    .button-section {
+    .home-buttons {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .home-btn {
-      flex: 1;
-      max-width: 300px;
-      padding: 30px 20px;
-      font-size: 1.2rem;
-      font-family: 'Press Start 2P', cursive;
-      color: #ffffff;
+      height: 40vh; /* reduced from 70vh */
       background-color: #223344;
-      border: 3px solid #ff5757;
-      border-radius: 15px;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.3s ease;
+      padding: 10px;
+      gap: 20px; /* reduced spacing */
     }
 
-    .home-btn:hover {
-      background-color: #ff5757;
+    .home-buttons button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 80px 20px; /* increased size */
+      font-size: 1.2rem; /* larger text */
+      font-family: 'Press Start 2P', cursive;
       color: #223344;
-      transform: scale(1.05);
+      background-color: #40e0d0;
+      border: none;
+      border-radius: 15px;
+      transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
     }
 
-    /* Section Content (Forms) */
-    .section-content {
-      max-width: 900px;
-      margin: 20px auto;
-      background: #223344;
-      padding: 40px;
-      border-radius: 20px;
-      border: 2px solid #ffffff;
-      text-align: center;
+    .home-buttons button:hover {
+      background-color: #ff5757;
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .form-section {
       display: none;
+      max-width: 900px;
+      margin: 20px auto; /* reduced margin */
+      padding: 20px;
+      background-color: #223344;
+      border: 2px solid #fff;
+      border-radius: 15px;
     }
 
     label {
       color: #ffffff !important;
-      font-family: 'Press Start 2P', cursive !important;
       font-size: 0.75rem;
     }
 
-    .form-control, select, textarea {
-      background-color: #192841;
-      border: 2px solid #ff5757;
-      color: #ffffff;
-      height: 40px;
-      font-size: 0.9rem;
-      font-family: 'Ubuntu Mono', monospace;
-      border-radius: 10px;
-      padding: 12px 15px;
-      transition: all 0.3s ease;
-      width: 100%;
-      margin-bottom: 15px;
+    input,
+    select,
+    textarea {
+      font-family: monospace !important;
+      color: #ffffff !important;
+      background-color: #2c3e50 !important;
+      border: 1px solid #ffffff !important;
+      height: 45px;
     }
 
-    textarea.form-control {
-      min-height: 100px;
+    textarea {
+      height: auto;
     }
 
-    .form-control:focus {
-      outline: none;
-      box-shadow: 0 0 10px #ff5757;
-      background-color: #223344;
-      color: #ffffff;
+    ::placeholder {
+      color: #ccc !important;
     }
 
-    /* Dropdown options */
-    select option {
-      background-color: #223344;
-      color: #ffffff;
-    }
-
-    /* Submit Button */
-    .btn-submit {
-      background-color: #ff5757;
-      border: 2px solid #ffffff;
-      color: #223344;
-      font-size: 1.1rem;
-      padding: 20px 40px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-family: 'Press Start 2P', cursive;
-      transition: all 0.3s ease;
-      margin-top: 15px;
-    }
-
-    .btn-submit:hover {
-      background-color: #223344;
-      color: #ffffff;
-      border: 2px solid #ff5757;
-      transform: scale(1.05);
-    }
-
-    /* Back to Home */
-    .back-btn {
+    .btn-custom {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      font-size: 0.9rem;
-      background-color: #192841;
-      border: 2px solid #ff5757;
-      border-radius: 8px;
-      color: #ffffff;
-      cursor: pointer;
+      background-color: #40e0d0;
+      border: none;
+      color: #223344;
+      font-family: "Press Start 2P", cursive;
+      font-size: 1rem;
+      padding: 15px 35px;
+      border-radius: 50px;
+      transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+      margin-top: 10px;
+    }
+
+    .btn-custom:hover {
+      background-color: #ff5757;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
+    }
+
+    .back-btn {
+      display: block;
+      margin: 15px auto 0;
+      padding: 10px 20px;
       font-family: 'Press Start 2P', cursive;
-      transition: all 0.3s ease;
+      font-size: 0.8rem;
+      color: #223344;
+      background-color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
     }
 
     .back-btn:hover {
       background-color: #ff5757;
-      color: #223344;
+      color: #fff;
     }
 
-    /* Footer */
-    footer {
+    .footer {
+      background-color: #272523;
+      color: white;
+      padding: 10px;
       text-align: center;
-      padding: 15px;
-      background-color: #192841;
-      color: #ffffff;
-      font-size: 0.7rem;
-      margin-top: 20px;
+      margin-top: 10px; /* reduced spacing */
     }
   </style>
 </head>
+
 <body>
+  <!-- Company bar -->
+  <div class="company-bar">XAZAtech</div>
 
-  <!-- Jumbotron -->
-  <div class="jumbotron">
-    <h1>Welcome to PC Solutions</h1>
-    <p>Custom Builds • Repairs • Upgrades</p>
-  </div>
+  <main>
+    <!-- Jumbotron -->
+    <section class="jumbotron">
+      <h1 class="jumbotron-heading">Think, Aspire, Create</h1>
+      <p class="lead">India's leading PC Building and Repair brand. Get your custom PC or repairs done by experts.</p>
+    </section>
 
-  <!-- Home Buttons -->
-  <div class="button-section" id="home-buttons">
-    <button class="home-btn" onclick="showForm('custom-form')">Get a New PC</button>
-    <button class="home-btn" onclick="showForm('repair-form')">PC Repairs</button>
-    <button class="home-btn" onclick="showForm('upgrade-form')">Upgrade</button>
-  </div>
+    <!-- Home Buttons -->
+    <section class="home-buttons">
+      <button onclick="showSection('pcbuilder')">Get a New PC</button>
+      <button onclick="showSection('pcrepair')">PC Repairs</button>
+      <button onclick="showSection('contactus')">Contact Us</button>
+    </section>
 
-  <!-- Custom Build Form -->
-  <div id="custom-form" class="section-content">
-    <h2>Custom PC Build</h2>
-    <form>
-      <label>Full Name *</label>
-      <input type="text" class="form-control" required>
-      <label>Email Address *</label>
-      <input type="email" class="form-control" required>
-      <label>Preferred Budget</label>
-      <input type="text" class="form-control">
-      <label>Requirements</label>
-      <textarea class="form-control"></textarea>
-      <button type="submit" class="btn-submit">Submit</button>
-    </form>
-    <button class="back-btn" onclick="goHome()">Back to Home</button>
-  </div>
+    <!-- Custom PC Build Form -->
+    <section id="pcbuilder" class="form-section">
+      <h2>Custom PC Build Request</h2>
+      <form id="pcbuild-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" name="name" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" name="email" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="purpose">Purpose of PC *</label>
+          <select name="purpose" class="form-control" required>
+            <option value="Gaming">Gaming</option>
+            <option value="Video Editing">Video Editing</option>
+            <option value="3D Rendering">3D Rendering</option>
+            <option value="Programming">Programming</option>
+            <option value="Office Use">Office Use</option>
+            <option value="Streaming">Streaming</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="budget">Budget (INR) *</label>
+          <select name="budget" class="form-control" required>
+            <option value="Under ₹50,000">Under ₹50,000</option>
+            <option value="₹50,000 – ₹80,000">₹50,000 – ₹80,000</option>
+            <option value="₹80,000 – ₹1,20,000">₹80,000 – ₹1,20,000</option>
+            <option value="₹1,20,000+">₹1,20,000+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="preferences">Any specific requirements or parts?</label>
+          <textarea name="preferences" rows="5" class="form-control"></textarea>
+        </div>
+        <input type="hidden" name="_captcha" value="false" />
+        <button type="submit" class="btn-custom">Submit Request</button>
+      </form>
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </section>
 
-  <!-- PC Repair Form -->
-  <div id="repair-form" class="section-content">
-    <h2>PC Repair Request</h2>
-    <form>
-      <label>Full Name *</label>
-      <input type="text" class="form-control" required>
-      <label>Email Address *</label>
-      <input type="email" class="form-control" required>
-      <label>Issue Description</label>
-      <textarea class="form-control"></textarea>
-      <button type="submit" class="btn-submit">Submit</button>
-    </form>
-    <button class="back-btn" onclick="goHome()">Back to Home</button>
-  </div>
+    <!-- PC Repair Form -->
+    <section id="pcrepair" class="form-section">
+      <h2>PC Repair Request</h2>
+      <form id="pcrepair-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" name="name" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" name="email" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="issue">Describe your issue *</label>
+          <textarea name="issue" rows="5" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn-custom">Submit Repair Request</button>
+      </form>
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </section>
 
-  <!-- Upgrade Form -->
-  <div id="upgrade-form" class="section-content">
-    <h2>Upgrade Request</h2>
-    <form>
-      <label>Full Name *</label>
-      <input type="text" class="form-control" required>
-      <label>Email Address *</label>
-      <input type="email" class="form-control" required>
-      <label>Current PC Specs</label>
-      <textarea class="form-control"></textarea>
-      <label>Upgrade Needs</label>
-      <textarea class="form-control"></textarea>
-      <button type="submit" class="btn-submit">Submit</button>
-    </form>
-    <button class="back-btn" onclick="goHome()">Back to Home</button>
-  </div>
+    <!-- Contact Us Section -->
+    <section id="contactus" class="form-section">
+      <h2>Contact Us</h2>
+      <form id="contact-form" action="https://formsubmit.co/314fd48f2ca2ad8393d888363801e2b9" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" name="name" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" name="email" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea name="message" rows="5" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn-custom">Send Message</button>
+      </form>
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </section>
+  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 PC Solutions. All Rights Reserved.</p>
+  <footer class="footer">
+    <p>&copy; 2024 XAZAtech All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    function showForm(formId) {
-      document.getElementById('home-buttons').style.display = 'none';
-      document.querySelectorAll('.section-content').forEach(sec => sec.style.display = 'none');
-      document.getElementById(formId).style.display = 'block';
+    function showSection(id) {
+      document.querySelector('.home-buttons').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
     }
     function goHome() {
-      document.getElementById('home-buttons').style.display = 'flex';
-      document.querySelectorAll('.section-content').forEach(sec => sec.style.display = 'none');
+      document.querySelectorAll('.form-section').forEach(sec => sec.style.display = 'none');
+      document.querySelector('.home-buttons').style.display = 'flex';
     }
   </script>
-
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 </html>
