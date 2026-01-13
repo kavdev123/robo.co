@@ -250,80 +250,388 @@
 
     <!-- Forms -->
     <section id="pcbuilder" class="form-section">
-      <h2>Custom PC Build Request</h2>
+      <h2>Custom PC Builder</h2>
       <form id="pcbuild-form">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" name="name" class="form-control" required />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Builder Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Your name" />
+          </div>
+          <div class="form-group col-md-6">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="you@example.com" />
+          </div>
         </div>
-        <div class="form-group">
-          <label>Email Address *</label>
-          <input type="email" name="email" class="form-control" required />
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>CPU</label>
+            <select id="cpu" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>GPU</label>
+            <select id="gpu" class="form-control"></select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Purpose of PC *</label>
-          <select name="purpose" class="form-control" required>
-            <option>Gaming</option>
-            <option>Video Editing</option>
-            <option>3D Rendering</option>
-            <option>Programming</option>
-            <option>Office Use</option>
-            <option>Streaming</option>
-            <option>Other</option>
-          </select>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Motherboard</label>
+            <select id="mobo" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>RAM</label>
+            <select id="ram" class="form-control"></select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Budget (INR) *</label>
-          <select name="budget" class="form-control" required>
-            <option>Under ₹50,000</option>
-            <option>₹50,000 – ₹80,000</option>
-            <option>₹80,000 – ₹1,20,000</option>
-            <option>₹1,20,000+</option>
-          </select>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Storage</label>
+            <select id="storage" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Power Supply</label>
+            <select id="psu" class="form-control"></select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Any specific requirements or parts?</label>
-          <textarea name="preferences" rows="5" class="form-control"></textarea>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Case</label>
+            <select id="case" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Quantity</label>
+            <select id="quantity" class="form-control">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
         </div>
-        <button type="button" class="btn-custom" onclick="submitForm('pcbuilder')">Submit Request</button>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>CPU Cooler</label>
+            <select id="cpuCooler" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Case Fans (set)</label>
+            <select id="fans" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Wi‑Fi / NIC</label>
+            <select id="wifi" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Sound Card / DAC</label>
+            <select id="sound" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Monitor</label>
+            <select id="monitor" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Keyboard / Mouse</label>
+            <select id="keyboard" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Operating System</label>
+            <select id="os" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Additional Storage Slot 2</label>
+            <select id="storage2" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Additional Storage Slot 3</label>
+            <select id="storage3" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Radiator / Liquid Cooling</label>
+            <select id="radiator" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Fan Hub / Controller</label>
+            <select id="fanHub" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Capture Card / Stream Gear</label>
+            <select id="capture" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Microphone</label>
+            <select id="microphone" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Webcam</label>
+            <select id="webcam" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Headset</label>
+            <select id="headset" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>UPS / Surge Protector</label>
+            <select id="ups" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Cable Kit / Sleeving</label>
+            <select id="cableKit" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Software & Subscriptions</label>
+          <div id="software-options" style="background:#192841;padding:10px;border-radius:8px;"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Extras</label>
+          <div id="extras-options" style="background:#192841;padding:10px;border-radius:8px;">
+            <!-- rendered dynamically -->
+          </div>
+        </div>
+
+        <div style="margin-top:15px;">
+          <h5>Build Summary</h5>
+          <div id="summary" style="color:#fff;background:#192841;padding:12px;border-radius:8px;">
+            <p id="summary-list">Select components to see summary.</p>
+            <p><strong>Estimated Price:</strong> <span id="estimated">₹0</span></p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" class="btn-custom" onclick="addBuildToCart()">Add Build to Cart</button>
+          <button type="button" class="back-btn" onclick="goHome()">Cancel</button>
+        </div>
       </form>
     </section>
 
     <section id="pcrepair" class="form-section">
       <h2>PC Repair Request</h2>
       <form id="pcrepair-form">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" name="name" class="form-control" required />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Full Name *</label>
+            <input type="text" name="name" class="form-control" required />
+          </div>
+          <div class="form-group col-md-6">
+            <label>Email Address *</label>
+            <input type="email" name="email" class="form-control" required />
+          </div>
         </div>
-        <div class="form-group">
-          <label>Email Address *</label>
-          <input type="email" name="email" class="form-control" required />
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-group col-md-6">
+            <label>Preferred Appointment Date</label>
+            <input type="date" name="preferredDate" class="form-control" />
+          </div>
         </div>
-        <div class="form-group">
-          <label>Describe your issue *</label>
-          <textarea name="issue" rows="5" class="form-control" required></textarea>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Device Type</label>
+            <select name="deviceType" class="form-control">
+              <option>Desktop</option>
+              <option>Laptop</option>
+              <option>All-in-One</option>
+              <option>Server</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Brand / Model</label>
+            <input type="text" name="brandModel" class="form-control" placeholder="e.g. Dell Inspiron 15" />
+          </div>
         </div>
-        <button type="button" class="btn-custom" onclick="submitForm('pcrepair')">Submit Repair Request</button>
+
+        <div class="form-group">
+          <label>Issue Category *</label>
+          <select name="issueCategory" class="form-control" required>
+            <option>No Power</option>
+            <option>No Boot / OS Error</option>
+            <option>Blue Screen / Crash</option>
+            <option>Slow Performance</option>
+            <option>Overheating</option>
+            <option>Display / GPU</option>
+            <option>Storage / Disk Failure</option>
+            <option>Network / Wi-Fi</option>
+            <option>Virus / Malware</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Preferred Service</label>
+            <select name="service" id="service-select" class="form-control">
+              <option value="dropoff">Drop-off at store</option>
+              <option value="pickup">Pickup & Return</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Urgency</label>
+            <select name="urgency" class="form-control">
+              <option>Standard (3-5 days)</option>
+              <option>Priority (1-2 days)</option>
+              <option>Immediate (Same day, subject to availability)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" id="pickup-address-group" style="display:none;">
+          <label>Pickup Address</label>
+          <textarea name="pickupAddress" rows="3" class="form-control"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Data Backup Required?</label>
+            <select name="backupRequired" class="form-control">
+              <option>No</option>
+              <option>Yes - Cloud Backup</option>
+              <option>Yes - Local Backup (HDD/SSD)</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Estimated Budget (optional)</label>
+            <input type="text" name="estimatedBudget" class="form-control" placeholder="e.g. ₹3000 - ₹8000" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Attach Photos (optional)</label>
+          <input type="file" name="photos" accept="image/*" class="form-control" multiple />
+        </div>
+
+        <div class="form-group">
+          <label>Service Options & Estimated Costs</label>
+          <div id="repair-services" style="background:#192841;padding:10px;border-radius:8px;">
+            <label><input type="checkbox" name="serviceOptions" value="diagnostics" class="repair-service" data-price="500" /> Diagnostics — ₹500</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="thermal" class="repair-service" data-price="800" /> Thermal Paste & Cleaning — ₹800</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="os" class="repair-service" data-price="1500" /> OS Reinstall — ₹1500</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="virus" class="repair-service" data-price="1200" /> Virus/Malware Cleanup — ₹1200</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="data-basic" class="repair-service" data-price="3000" /> Data Recovery (Basic) — ₹3000</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="data-adv" class="repair-service" data-price="8000" /> Data Recovery (Advanced) — ₹8000</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="screen" class="repair-service" data-price="6000" /> Screen Replacement (Laptop) — ₹6000</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="battery" class="repair-service" data-price="3000" /> Battery Replacement (Laptop) — ₹3000</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="keyboard" class="repair-service" data-price="1200" /> Keyboard Replacement — ₹1200</label><br>
+            <label><input type="checkbox" name="serviceOptions" value="liquid" class="repair-service" data-price="1500" /> Liquid Damage Inspection — ₹1500</label>
+          </div>
+          <div id="repair-estimate" style="margin-top:8px;color:#40e0d0;">Estimated Repair Cost: ₹0</div>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Notes</label>
+          <textarea name="issueDetails" rows="4" class="form-control" placeholder="Describe the problem, error messages, recent changes etc."></textarea>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" class="btn-custom" onclick="submitForm('pcrepair')">Submit Repair Request</button>
+          <button type="button" class="back-btn" onclick="goHome()">Back</button>
+        </div>
       </form>
     </section>
 
     <section id="upgrade" class="form-section">
-      <h2>Upgrade Your PC</h2>
+      <h2>Upgrade Simulator</h2>
       <form id="upgrade-form">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" name="name" class="form-control" required />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Full Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Your name" />
+          </div>
+          <div class="form-group col-md-6">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" placeholder="you@example.com" />
+          </div>
         </div>
-        <div class="form-group">
-          <label>Email Address *</label>
-          <input type="email" name="email" class="form-control" required />
+
+        <h5>Current System</h5>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>CPU (Current)</label>
+            <select id="cur-cpu" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>GPU (Current)</label>
+            <select id="cur-gpu" class="form-control"></select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Required Upgrades *</label>
-          <textarea name="message" rows="5" class="form-control" required></textarea>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>RAM (Current)</label>
+            <select id="cur-ram" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Storage (Current)</label>
+            <select id="cur-storage" class="form-control"></select>
+          </div>
         </div>
-        <button type="button" class="btn-custom" onclick="submitForm('upgrade')">Send Message</button>
+
+        <h5>Desired Upgrades</h5>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>CPU (Upgrade To)</label>
+            <select id="new-cpu" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>GPU (Upgrade To)</label>
+            <select id="new-gpu" class="form-control"></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>RAM (Upgrade To)</label>
+            <select id="new-ram" class="form-control"></select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Storage (Upgrade To)</label>
+            <select id="new-storage" class="form-control"></select>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+          <button type="button" class="btn-custom" onclick="simulateUpgrade()">Simulate Upgrade</button>
+          <button type="button" class="back-btn" onclick="goHome()">Back</button>
+        </div>
+
+        <div id="upgrade-result" style="display:none;margin-top:15px;background:#192841;padding:12px;border-radius:8px;color:#fff;">
+          <h5>Simulation Result</h5>
+          <div id="upgrade-warnings" style="color:#ffb3b3;margin-bottom:8px;"></div>
+          <p id="upgrade-price"></p>
+          <p id="upgrade-performance"></p>
+          <div id="upgrade-actions" style="margin-top:8px;"></div>
+        </div>
       </form>
     </section>
 
@@ -362,10 +670,419 @@
   <script>
     let googleUser = null;
 
+    // Expanded component catalog with more options and prices (INR)
+    const catalog = {
+      cpu: [
+        { id: 'intel-i3-12100', name: 'Intel i3-12100', price: 9000, brand: 'Intel', score: 50 },
+        { id: 'intel-i5-12400f', name: 'Intel i5-12400F', price: 15000, brand: 'Intel', score: 85 },
+        { id: 'intel-i5-13400', name: 'Intel i5-13400', price: 18000, brand: 'Intel', score: 95 },
+        { id: 'intel-i7-12700', name: 'Intel i7-12700', price: 32000, brand: 'Intel', score: 150 },
+        { id: 'intel-i7-13700', name: 'Intel i7-13700', price: 42000, brand: 'Intel', score: 185 },
+        { id: 'intel-i9-13900', name: 'Intel i9-13900K', price: 75000, brand: 'Intel', score: 300 },
+        { id: 'amd-5600x', name: 'AMD Ryzen 5 5600X', price: 17000, brand: 'AMD', score: 90 },
+        { id: 'amd-7600x', name: 'AMD Ryzen 5 7600X', price: 22000, brand: 'AMD', score: 120 },
+        { id: 'amd-7700x', name: 'AMD Ryzen 7 7700X', price: 34000, brand: 'AMD', score: 180 },
+        { id: 'amd-7900x', name: 'AMD Ryzen 9 7900X', price: 65000, brand: 'AMD', score: 280 }
+      ],
+      gpu: [
+        { id: 'gtx-1050', name: 'NVIDIA GTX 1050', price: 7000, brand: 'NVIDIA', score: 30 },
+        { id: 'gtx-1650', name: 'NVIDIA GTX 1650', price: 12000, brand: 'NVIDIA', score: 45 },
+        { id: 'gtx-1660', name: 'NVIDIA GTX 1660', price: 18000, brand: 'NVIDIA', score: 70 },
+        { id: 'rtx-3050', name: 'NVIDIA RTX 3050', price: 22000, brand: 'NVIDIA', score: 90 },
+        { id: 'rtx-3060', name: 'NVIDIA RTX 3060', price: 30000, brand: 'NVIDIA', score: 120 },
+        { id: 'rtx-4060', name: 'NVIDIA RTX 4060', price: 42000, brand: 'NVIDIA', score: 160 },
+        { id: 'rtx-4070', name: 'NVIDIA RTX 4070', price: 70000, brand: 'NVIDIA', score: 240 },
+        { id: 'rtx-4080', name: 'NVIDIA RTX 4080', price: 140000, brand: 'NVIDIA', score: 420 },
+        { id: 'amd-rx6500', name: 'AMD Radeon RX 6500 XT', price: 15000, brand: 'AMD', score: 60 },
+        { id: 'amd-rx6700', name: 'AMD Radeon RX 6700 XT', price: 38000, brand: 'AMD', score: 180 },
+        { id: 'amd-rx7900', name: 'AMD Radeon RX 7900 XT', price: 120000, brand: 'AMD', score: 380 }
+      ],
+      mobo: [
+        { id: 'msi-b560', name: 'MSI B560 Micro-ATX Motherboard', price: 7500 },
+        { id: 'asus-b660', name: 'ASUS B660 ATX Motherboard', price: 9500 },
+        { id: 'gigabyte-x570', name: 'Gigabyte X570 ATX Motherboard', price: 16500 },
+        { id: 'asus-x670', name: 'ASUS X670 ATX Motherboard', price: 22000 }
+      ],
+      ram: [
+        { id: 'corsair-8gb-3200', name: 'Corsair Vengeance 8GB DDR4-3200', price: 2200 },
+        { id: 'kingston-8gb-3200', name: 'Kingston 8GB DDR4-3200', price: 2000 },
+        { id: 'gskill-16gb-3200', name: 'G.SKILL 16GB (2x8) DDR4-3200', price: 4200 },
+        { id: 'corsair-16gb-3600', name: 'Corsair Vengeance 16GB DDR4-3600', price: 4500 },
+        { id: 'gskill-32gb-3600', name: 'G.SKILL 32GB (2x16) DDR4-3600', price: 8200 },
+        { id: 'kingston-64gb-3200', name: 'Kingston 64GB (2x32) DDR4-3200', price: 15500 },
+        { id: 'corsair-32gb-ddr5', name: 'Corsair 32GB DDR5-5200', price: 12000 }
+      ],
+      storage: [
+        { id: 'samsung-970-500', name: 'Samsung 970 EVO Plus 500GB (NVMe)', price: 3800 },
+        { id: 'samsung-980-1tb', name: 'Samsung 980 PRO 1TB (NVMe)', price: 9000 },
+        { id: 'wd-sn750-1tb', name: 'WD Black SN750 1TB (NVMe)', price: 7500 },
+        { id: 'crucial-p5-1tb', name: 'Crucial P5 1TB (NVMe)', price: 6800 },
+        { id: 'kingston-a2000-1tb', name: 'Kingston A2000 1TB (NVMe)', price: 6500 },
+        { id: 'samsung-870-1tb', name: 'Samsung 870 EVO 1TB (SATA)', price: 5200 },
+        { id: 'seagate-2tb', name: 'Seagate Barracuda 2TB (HDD)', price: 4500 }
+      ],
+      psu: [
+        { id: 'corsair-450', name: 'Corsair 450W 80+ Bronze', price: 3500 },
+        { id: 'evga-550', name: 'EVGA 550W 80+ Bronze', price: 4200 },
+        { id: 'corsair-650', name: 'Corsair 650W 80+ Bronze', price: 6000 },
+        { id: 'coolermaster-750', name: 'Cooler Master 750W 80+ Gold', price: 9500 },
+        { id: 'seasonic-750', name: 'Seasonic 750W 80+ Gold', price: 11000 }
+      ],
+      case: [
+        { id: 'coolermaster-n400', name: 'Cooler Master N400', price: 5000 },
+        { id: 'nzxt-h510', name: 'NZXT H510', price: 7000 },
+        { id: 'corsair-4000d', name: 'Corsair 4000D', price: 8500 },
+        { id: 'fractal-define', name: 'Fractal Define 7 Compact', price: 12000 },
+        { id: 'lianli-011', name: 'Lian Li PC-O11', price: 14000 },
+        { id: 'coolermaster-td500', name: 'Cooler Master TD500', price: 8000 }
+      ]
+      ,
+      cpuCooler: [
+        { id: 'air-120', name: 'Air Cooler (120mm)', price: 1500 },
+        { id: 'air-240', name: 'Air Tower Cooler', price: 3000 },
+        { id: 'aio-240', name: 'AIO Liquid 240mm', price: 6000 }
+      ],
+      fans: [
+        { id: 'fans-2', name: '2x Case Fans (120mm)', price: 800 },
+        { id: 'fans-3', name: '3x Case Fans (120mm)', price: 1200 }
+      ],
+      wifi: [
+        { id: 'wifi-ax', name: 'Wi-Fi 6 PCIe Card', price: 2500 },
+        { id: 'wifi-usb', name: 'USB Wi-Fi Adapter', price: 1200 }
+      ],
+      sound: [
+        { id: 'onboard', name: 'Onboard (no extra)', price: 0 },
+        { id: 'sound-audio', name: 'Dedicated Sound Card', price: 4500 }
+      ],
+      monitor: [
+        { id: 'mon-24-1080', name: '24" 1080p 60Hz', price: 9000 },
+        { id: 'mon-27-1440', name: '27" 1440p 144Hz', price: 25000 }
+      ],
+      keyboard: [
+        { id: 'kb-basic', name: 'Keyboard + Mouse Combo', price: 1500 },
+        { id: 'kb-mech', name: 'Mechanical Keyboard', price: 4500 }
+      ],
+      mouse: [
+        { id: 'mouse-basic', name: 'Basic Mouse', price: 500 },
+        { id: 'mouse-gaming', name: 'Gaming Mouse', price: 2500 }
+      ],
+      os: [
+        { id: 'none', name: 'No OS / Bring Your Own', price: 0 },
+        { id: 'windows-11', name: 'Windows 11 License', price: 8000 },
+        { id: 'windows-10', name: 'Windows 10 License', price: 7000 },
+        { id: 'ubuntu', name: 'Ubuntu (free)', price: 0 }
+      ],
+      storage2: [
+        { id: 'samsung-970-500', name: 'Samsung 970 EVO Plus 500GB (NVMe)', price: 3800 },
+        { id: 'samsung-980-1tb', name: 'Samsung 980 PRO 1TB (NVMe)', price: 9000 },
+        { id: 'wd-sn750-1tb', name: 'WD Black SN750 1TB (NVMe)', price: 7500 },
+        { id: 'crucial-p5-1tb', name: 'Crucial P5 1TB (NVMe)', price: 6800 },
+        { id: 'samsung-870-1tb', name: 'Samsung 870 EVO 1TB (SATA)', price: 5200 },
+        { id: 'seagate-2tb', name: 'Seagate Barracuda 2TB (HDD)', price: 4500 }
+      ],
+      storage3: [
+        { id: 'samsung-980-1tb', name: 'Samsung 980 PRO 1TB (NVMe)', price: 9000 },
+        { id: 'nvme-2tb', name: 'NVMe 2TB SSD (Generic)', price: 11000 },
+        { id: 'seagate-4tb', name: 'Seagate 4TB HDD', price: 8000 },
+        { id: 'wd-red-4tb', name: 'WD Red 4TB NAS HDD', price: 9500 }
+      ],
+      radiator: [
+        { id: 'none-rad', name: 'No Radiator', price: 0 },
+        { id: 'rad-120', name: '120mm Radiator', price: 2500 },
+        { id: 'rad-240', name: '240mm Radiator', price: 4500 },
+        { id: 'rad-360', name: '360mm Radiator', price: 7500 }
+      ],
+      fanHub: [
+        { id: 'no-hub', name: 'No Fan Hub', price: 0 },
+        { id: 'hub-basic', name: 'Basic Fan Hub', price: 1200 },
+        { id: 'hub-rgb', name: 'RGB Fan Controller', price: 2500 }
+      ],
+      capture: [
+        { id: 'no-capture', name: 'None', price: 0 },
+        { id: 'elgato-4k', name: 'Elgato 4K60 Capture Card', price: 25000 },
+        { id: 'elgato-1080', name: 'Elgato HD60 S+', price: 15000 }
+      ],
+      microphone: [
+        { id: 'mic-basic', name: 'USB Microphone', price: 2500 },
+        { id: 'mic-xlr', name: 'XLR Microphone (requires interface)', price: 8000 }
+      ],
+      webcam: [
+        { id: 'webcam-basic', name: '720p Webcam', price: 1500 },
+        { id: 'webcam-1080', name: '1080p Webcam', price: 4000 }
+      ],
+      headset: [
+        { id: 'head-basic', name: 'Wired Headset', price: 1500 },
+        { id: 'head-gaming', name: 'Wireless Gaming Headset', price: 7000 }
+      ],
+      ups: [
+        { id: 'ups-none', name: 'No UPS', price: 0 },
+        { id: 'ups-600', name: '600VA UPS', price: 6000 },
+        { id: 'ups-1200', name: '1200VA UPS', price: 12000 }
+      ],
+      cableKit: [
+        { id: 'cable-basic', name: 'Standard Cable Kit', price: 800 },
+        { id: 'cable-sleeved', name: 'Sleeved Cable Kit', price: 2500 }
+      ],
+      software: [
+        { id: 'gamepass', name: 'Xbox Game Pass (3 months)', price: 899 },
+        { id: 'office365', name: 'Microsoft 365 Personal (1 year)', price: 4499 },
+        { id: 'antivirus', name: 'Antivirus (1 year)', price: 899 },
+        { id: 'driver-install', name: 'Driver Installation & Optimization', price: 999 }
+      ],
+      extras: [
+        { id: 'assembly', name: 'Professional Assembly & Testing', price: 1500 },
+        { id: 'warranty-1', name: '1 Year Extended Warranty', price: 3500 },
+        { id: 'warranty-2', name: '2 Year Extended Warranty', price: 6000 }
+      ]
+    };
+
+    function populateSelectors() {
+      for (const key of Object.keys(catalog)) {
+        const sel = document.getElementById(key);
+        if (!sel) continue;
+        sel.innerHTML = '';
+        catalog[key].forEach(item => {
+          const opt = document.createElement('option');
+          opt.value = item.id;
+          opt.textContent = `${item.name} — ₹${item.price.toLocaleString()}`;
+          sel.appendChild(opt);
+        });
+        sel.addEventListener('change', updateSummary);
+      }
+      // render software and extras checkboxes
+      const swContainer = document.getElementById('software-options');
+      if (swContainer && catalog.software) {
+        swContainer.innerHTML = '';
+        catalog.software.forEach(s => {
+          const id = 'sw-' + s.id;
+          const label = document.createElement('label');
+          label.style.display = 'block';
+          label.innerHTML = `<input type="checkbox" class="software-check" id="${id}" value="${s.id}" data-price="${s.price}" /> ${s.name} — ₹${s.price.toLocaleString()}`;
+          swContainer.appendChild(label);
+        });
+      }
+      const exContainer = document.getElementById('extras-options');
+      if (exContainer && catalog.extras) {
+        exContainer.innerHTML = '';
+        catalog.extras.forEach(e => {
+          const id = 'ex-' + e.id;
+          const label = document.createElement('label');
+          label.style.display = 'block';
+          label.innerHTML = `<input type="checkbox" class="extras-check" id="${id}" value="${e.id}" data-price="${e.price}" /> ${e.name} — ₹${e.price.toLocaleString()}`;
+          exContainer.appendChild(label);
+        });
+      }
+      // attach software/extras listeners
+      document.querySelectorAll('.software-check, .extras-check').forEach(cb => cb.addEventListener('change', updateSummary));
+      // initial update
+      updateSummary();
+      // populate upgrade selectors
+      populateUpgradeSelectors();
+    }
+
+
+    // Show/hide pickup address in repair form
+    function attachRepairHandlers() {
+      const serviceSel = document.getElementById('service-select');
+      if (!serviceSel) return;
+      const pickupGroup = document.getElementById('pickup-address-group');
+      serviceSel.addEventListener('change', () => {
+        if (serviceSel.value === 'pickup') pickupGroup.style.display = 'block';
+        else pickupGroup.style.display = 'none';
+      });
+      // repair service checkbox listeners
+      const serviceChecks = document.querySelectorAll('.repair-service');
+      serviceChecks.forEach(cb => cb.addEventListener('change', updateRepairEstimate));
+      serviceSel.addEventListener('change', updateRepairEstimate);
+    }
+
+    function updateRepairEstimate() {
+      const serviceChecks = document.querySelectorAll('.repair-service');
+      let total = 0;
+      serviceChecks.forEach(cb => {
+        if (cb.checked) total += parseInt(cb.getAttribute('data-price') || '0', 10);
+      });
+      const serviceSel = document.getElementById('service-select');
+      if (serviceSel && serviceSel.value === 'pickup') total += 500; // pickup fee
+      const el = document.getElementById('repair-estimate');
+      if (el) el.textContent = 'Estimated Repair Cost: ₹' + total.toLocaleString();
+      return total;
+    }
+
+    function getItemById(type, id) {
+      return catalog[type].find(i => i.id === id) || null;
+    }
+
+    // Populate upgrade-specific selectors (current and new)
+    function populateUpgradeSelectors() {
+      const mappings = [
+        { cur: 'cur-cpu', new: 'new-cpu', type: 'cpu' },
+        { cur: 'cur-gpu', new: 'new-gpu', type: 'gpu' },
+        { cur: 'cur-ram', new: 'new-ram', type: 'ram' },
+        { cur: 'cur-storage', new: 'new-storage', type: 'storage' }
+      ];
+      mappings.forEach(m => {
+        const cur = document.getElementById(m.cur);
+        const neu = document.getElementById(m.new);
+        if (!cur || !neu) return;
+        cur.innerHTML = '';
+        neu.innerHTML = '';
+        catalog[m.type].forEach(item => {
+          const o1 = document.createElement('option'); o1.value = item.id; o1.textContent = item.name + ' — ₹' + item.price.toLocaleString();
+          const o2 = o1.cloneNode(true);
+          cur.appendChild(o1); neu.appendChild(o2);
+        });
+      });
+    }
+
+    function simulateUpgrade() {
+      const curCpu = document.getElementById('cur-cpu').value;
+      const newCpu = document.getElementById('new-cpu').value;
+      const curGpu = document.getElementById('cur-gpu').value;
+      const newGpu = document.getElementById('new-gpu').value;
+      const curRam = document.getElementById('cur-ram').value;
+      const newRam = document.getElementById('new-ram').value;
+      const curStorage = document.getElementById('cur-storage').value;
+      const newStorage = document.getElementById('new-storage').value;
+
+      const curItems = [
+        getItemById('cpu', curCpu), getItemById('gpu', curGpu), getItemById('ram', curRam), getItemById('storage', curStorage)
+      ];
+      const newItems = [
+        getItemById('cpu', newCpu), getItemById('gpu', newGpu), getItemById('ram', newRam), getItemById('storage', newStorage)
+      ];
+
+      let curTotal = 0, newTotal = 0;
+      let curScore = 0, newScore = 0;
+      curItems.forEach(i => { if (i) { curTotal += i.price; curScore += (i.score||0); } });
+      newItems.forEach(i => { if (i) { newTotal += i.price; newScore += (i.score||0); } });
+
+      const delta = newTotal - curTotal;
+      const pct = curScore ? Math.round(((newScore - curScore) / curScore) * 100) : 0;
+
+      const warnings = [];
+      // simple compatibility hint: CPU brand change may require mobo change
+      const curCpuObj = getItemById('cpu', curCpu);
+      const newCpuObj = getItemById('cpu', newCpu);
+      if (curCpuObj && newCpuObj && curCpuObj.brand && newCpuObj.brand && curCpuObj.brand !== newCpuObj.brand) {
+        warnings.push('CPU brand changed. You may need a new motherboard if keeping existing board.');
+      }
+
+      // render results
+      document.getElementById('upgrade-warnings').textContent = warnings.join(' ');
+      document.getElementById('upgrade-price').textContent = `Current parts total: ₹${curTotal.toLocaleString()} — Upgraded parts total: ₹${newTotal.toLocaleString()} — Price change: ₹${delta.toLocaleString()}`;
+      document.getElementById('upgrade-performance').textContent = `Estimated performance delta: ${pct}% (score ${curScore} → ${newScore})`;
+      const actions = document.getElementById('upgrade-actions');
+      actions.innerHTML = '';
+      const addBtn = document.createElement('button');
+      addBtn.className = 'btn-custom';
+      addBtn.textContent = 'Add Upgrade Plan to Cart';
+      addBtn.onclick = () => {
+        const plan = { formId: 'upgrade', type: 'upgrade-plan', current: curItems.map(i=>i?{id:i.id,name:i.name,price:i.price}:null), upgrade: newItems.map(i=>i?{id:i.id,name:i.name,price:i.price}:null), delta, curTotal, newTotal, curScore, newScore, created: Date.now() };
+        let subs = JSON.parse(localStorage.getItem('submissions')) || [];
+        subs.push(plan); localStorage.setItem('submissions', JSON.stringify(subs));
+        alert('Upgrade plan added to cart.');
+        goHome();
+      };
+      actions.appendChild(addBtn);
+      document.getElementById('upgrade-result').style.display = 'block';
+    }
+
+    function updateSummary() {
+      const qty = parseInt(document.getElementById('quantity').value || '1', 10);
+      const parts = ['cpu', 'gpu', 'mobo', 'ram', 'storage', 'storage2', 'storage3', 'psu', 'case', 'cpuCooler', 'fans', 'wifi', 'sound', 'monitor', 'keyboard', 'mouse', 'os', 'radiator', 'fanHub', 'capture', 'microphone', 'webcam', 'headset', 'ups', 'cableKit'];
+      let total = 0;
+      let html = '<ul style="padding-left:18px;margin:0;">';
+      parts.forEach(p => {
+        const sel = document.getElementById(p);
+        if (!sel) return;
+        const item = getItemById(p, sel.value) || catalog[p][0];
+        html += `<li>${item.name} — ₹${item.price.toLocaleString()}</li>`;
+        total += item.price;
+      });
+
+      // software checks
+      const sw = [];
+      document.querySelectorAll('.software-check').forEach(cb => {
+        if (cb.checked) {
+          const price = parseInt(cb.getAttribute('data-price') || '0', 10);
+          sw.push({ name: cb.parentNode.textContent.trim(), price });
+          total += price;
+        }
+      });
+      if (sw.length) {
+        html += '<li><strong>Software & Subscriptions</strong><ul>';
+        sw.forEach(s => html += `<li>${s.name} — ₹${s.price.toLocaleString()}</li>`);
+        html += '</ul></li>';
+      }
+
+      // extras
+      const ex = [];
+      document.querySelectorAll('.extras-check').forEach(cb => {
+        if (cb.checked) {
+          const price = parseInt(cb.getAttribute('data-price') || '0', 10);
+          ex.push({ name: cb.parentNode.textContent.trim(), price });
+          total += price;
+        }
+      });
+      if (ex.length) {
+        html += '<li><strong>Extras</strong><ul>';
+        ex.forEach(e => html += `<li>${e.name} — ₹${e.price.toLocaleString()}</li>`);
+        html += '</ul></li>';
+      }
+
+      html += '</ul>';
+      const totalAll = total * qty;
+      document.getElementById('summary-list').innerHTML = html;
+      document.getElementById('estimated').textContent = '₹' + totalAll.toLocaleString();
+    }
+
+    function addBuildToCart() {
+      const form = document.getElementById('pcbuild-form');
+      const name = form.elements['name'].value || 'Guest';
+      const email = form.elements['email'].value || '';
+      const qty = parseInt(document.getElementById('quantity').value || '1', 10);
+      const parts = ['cpu', 'gpu', 'mobo', 'ram', 'storage', 'storage2', 'storage3', 'psu', 'case', 'cpuCooler', 'fans', 'wifi', 'sound', 'monitor', 'keyboard', 'mouse', 'os', 'radiator', 'fanHub', 'capture', 'microphone', 'webcam', 'headset', 'ups', 'cableKit'];
+      const selection = {};
+      let total = 0;
+      parts.forEach(p => {
+        const sel = document.getElementById(p);
+        const item = getItemById(p, sel.value) || catalog[p][0];
+        selection[p] = { id: item.id, name: item.name, price: item.price };
+        total += item.price;
+      });
+      // software selections
+      const software = [];
+      document.querySelectorAll('.software-check').forEach(cb => {
+        if (cb.checked) {
+          const idv = cb.value;
+          const s = catalog.software.find(x => x.id === idv);
+          if (s) { software.push({ id: s.id, name: s.name, price: s.price }); total += s.price; }
+        }
+      });
+      // extras
+      const extras = [];
+      document.querySelectorAll('.extras-check').forEach(cb => {
+        if (cb.checked) {
+          const idv = cb.value;
+          const e = catalog.extras.find(x => x.id === idv);
+          if (e) { extras.push({ id: e.id, name: e.name, price: e.price }); total += e.price; }
+        }
+      });
+      total = total * qty;
+      let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+      const build = { formId: 'pcbuilder', type: 'build', name, email, qty, selection, software, extras, total, created: Date.now() };
+      submissions.push(build);
+      localStorage.setItem('submissions', JSON.stringify(submissions));
+      alert('Build added to cart — Estimated total: ₹' + total.toLocaleString());
+      goHome();
+    }
+
     function showSection(id) {
       document.querySelector('.home-buttons').style.display = 'none';
       document.querySelectorAll('.form-section, .thank-message, #cart').forEach(sec => sec.style.display = 'none');
       document.getElementById(id).style.display = 'block';
+      if (id === 'pcrepair') updateRepairEstimate();
       if (googleUser) {
         const form = document.querySelector(`#${id} form`);
         if (form) {
@@ -383,7 +1100,22 @@
     function submitForm(formId) {
       const form = document.getElementById(formId + '-form');
       const data = {};
-      for (let el of form.elements) if (el.name) data[el.name] = el.value;
+      for (let el of form.elements) {
+        if (!el.name) continue;
+        if (el.type === 'checkbox') {
+          if (!data[el.name]) data[el.name] = [];
+          if (el.checked) data[el.name].push(el.value);
+        } else if (el.type === 'file') {
+          data[el.name] = el.files ? Array.from(el.files).map(f => f.name) : null;
+        } else {
+          data[el.name] = el.value;
+        }
+      }
+      // special: compute repair estimate when submitting repair form
+      if (formId === 'pcrepair') {
+        const est = updateRepairEstimate();
+        data.repairEstimate = est;
+      }
       let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
       submissions.push({ formId, data });
       localStorage.setItem('submissions', JSON.stringify(submissions));
@@ -392,22 +1124,58 @@
     }
 
     function showCart() {
-      if (!googleUser) { alert("Please Sign In with Google to view the cart!"); return; }
+      // allow viewing cart without Google sign-in; data is stored locally
       document.querySelector('.home-buttons').style.display = 'none';
       document.querySelectorAll('.form-section, .thank-message').forEach(sec => sec.style.display = 'none');
       const cart = document.getElementById('cart');
       const cartItems = document.getElementById('cart-items');
       cartItems.innerHTML = '';
       let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-      if (submissions.length === 0) cartItems.innerHTML = '<p>No submissions saved yet.</p>';
+      if (submissions.length === 0) cartItems.innerHTML = '<p>No items in cart yet.</p>';
       else submissions.forEach((sub, i) => {
         const div = document.createElement('div');
         div.className = 'cart-item';
-        let html = `<strong>Form Type:</strong> ${sub.formId}<br>`;
-        for (const key in sub.data) html += `<p><strong>${key}:</strong> ${sub.data[key]}</p>`;
+        let html = '';
+        if (sub.type === 'build') {
+          html += `<strong>Custom Build</strong> — <em>${sub.name}</em> <br>`;
+          html += `<p><strong>Qty:</strong> ${sub.qty} &nbsp; <strong>Total:</strong> ₹${sub.total.toLocaleString()}</p>`;
+          html += '<div style="margin-top:6px;">';
+          for (const k in sub.selection) html += `<p style="margin:2px 0;"><strong>${k.toUpperCase()}:</strong> ${sub.selection[k].name} — ₹${sub.selection[k].price.toLocaleString()}</p>`;
+          if (sub.software && sub.software.length) {
+            html += '<p><strong>Software:</strong></p>';
+            sub.software.forEach(s => html += `<p style="margin:2px 0;">- ${s.name} — ₹${s.price.toLocaleString()}</p>`);
+          }
+          if (sub.extras && sub.extras.length) {
+            html += '<p><strong>Extras:</strong></p>';
+            sub.extras.forEach(e => html += `<p style="margin:2px 0;">- ${e.name} — ₹${e.price.toLocaleString()}</p>`);
+          }
+          html += '</div>';
+        } else if (sub.type === 'upgrade-plan') {
+          html += `<strong>Upgrade Plan</strong><br>`;
+          html += `<p><strong>Price Change:</strong> ₹${(sub.delta||0).toLocaleString()} &nbsp; <strong>New Total:</strong> ₹${(sub.newTotal||0).toLocaleString()}</p>`;
+          if (sub.upgrade) {
+            html += '<div style="margin-top:6px;">';
+            sub.upgrade.forEach((u, idx) => { if (u) html += `<p style="margin:2px 0;"><strong>New ${idx}:</strong> ${u.name} — ₹${u.price.toLocaleString()}</p>`; });
+            html += '</div>';
+          }
+        } else {
+          html += `<strong>Form Type:</strong> ${sub.formId}<br>`;
+          for (const key in sub.data) html += `<p><strong>${key}:</strong> ${sub.data[key]}</p>`;
+        }
         div.innerHTML = html;
         cartItems.appendChild(div);
       });
+
+      // show a small notice if user is not signed in
+      if (!googleUser) {
+        const note = document.createElement('p');
+        note.style.color = '#ffd88a';
+        note.style.margin = '8px 0';
+        note.textContent = 'Note: You are not signed in. Cart is stored locally in your browser only.';
+        const heading = cart.querySelector('h2');
+        if (heading) heading.insertAdjacentElement('afterend', note);
+      }
+
       cart.style.display = 'block';
     }
 
@@ -429,15 +1197,33 @@
     }
 
     window.onload = function () {
-      google.accounts.id.initialize({
-        client_id: "YOUR_GOOGLE_CLIENT_ID",
-        callback: handleCredentialResponse
-      });
-      google.accounts.id.renderButton(
-        document.getElementById("g_id_signin"),
-        { theme: "filled_blue", size: "large", shape: "rectangular", text: "signin_with" }
-      );
-      google.accounts.id.prompt();
+      // populate component selectors first
+      populateSelectors();
+
+      // attach handlers for repair form behaviour
+      attachRepairHandlers();
+
+      // restore user if previously signed in (basic check)
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        // minimal UX: hide sign in placeholder until a real callback
+        document.getElementById('g_id_signin').style.display = 'none';
+        document.getElementById('signout-btn').style.display = 'inline-block';
+        googleUser = { name: savedUser.split('@')[0], email: savedUser };
+      }
+
+      // Google sign in
+      if (window.google && google.accounts && google.accounts.id) {
+        google.accounts.id.initialize({
+          client_id: "YOUR_GOOGLE_CLIENT_ID",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("g_id_signin"),
+          { theme: "filled_blue", size: "large", shape: "rectangular", text: "signin_with" }
+        );
+        google.accounts.id.prompt();
+      }
     };
   </script>
 </body>
