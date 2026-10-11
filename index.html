@@ -18,7 +18,7 @@
       overflow-x: hidden;
     }
 
-    h1, h2, h5, h4, a, label {
+    h1, h2, h3, h5, h4, a, label {
       font-family: 'Press Start 2P', cursive;
     }
 
@@ -171,6 +171,29 @@
       font-family: monospace;
       font-size: 1.1rem;
       line-height: 1.6;
+    }
+
+    /* Founder Card Styling */
+    .founder-card {
+      background-color: #192841;
+      border: 2px dashed #ff5757;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      box-shadow: 0 4px 15px rgba(255, 87, 87, 0.2);
+    }
+
+    .founder-card h3 {
+      color: #ff5757;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .founder-card p {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      margin-bottom: 8px;
     }
 
     /* News Card Styles */
@@ -357,7 +380,7 @@
     <!-- Home View Container -->
     <div id="home-view">
       <section class="jumbotron">
-        <h1 class="jumbotron-heading">Knowledge is Power</h1>
+        <h1 class="jumbotron-heading">Build, Repair, Upgrade</h1>
         <p class="lead">India's leading PC Building and Repair brand. Get your custom PC or repairs done by experts.</p>
       </section>
 
@@ -372,7 +395,16 @@
     <section id="about" class="page-section">
       <h2>About Us</h2>
       <p>Welcome to <strong>XAZAtech</strong>, India's premier destination for custom PC building, hardware diagnostics, and professional device upgrades. Our services also include Web Development and professional tech consultancy. We live on one motto: <em>"Knowledge is Power"</em>.</p>
-      <p>Founded by passionate technology and engineering experts, XAZAtech was built with a vision to revolutionize the tech service landscape. Whether you need a heavy-duty 4K gaming rig, a custom digital web presence, expert consultancy, or urgent system repairs, our team ensures high-end quality assurance and seamless support every step of the way.</p>
+      
+      <!-- Distinct Founder Card -->
+      <div class="founder-card">
+        <h3>Meet the Founder</h3>
+        <p><strong>Lead Engineer & Visionary Architect</strong></p>
+        <p>Driven by an enduring passion for high-performance computing and cutting-edge software engineering, our founder established XAZAtech with a clear mission: to deliver uncompromising tech quality, transparency, and expert craftsmanship to every client. They personally oversee every hardware benchmark and strategic service standard we offer.</p>
+      </div>
+
+      <p>Whether you need a heavy-duty 4K gaming rig, a custom digital web presence, expert consultancy, or urgent system repairs, our team ensures high-end quality assurance and seamless support every step of the way.</p>
+      
       <div class="text-center">
         <a href="#" class="back-btn">Back to Home</a>
       </div>
@@ -767,12 +799,11 @@
             container.innerHTML = '';
             let count = 0;
             items.forEach(item => {
-              if (count >= 6) return;
+              if (count >= 5) return;
               const title = item.querySelector('title')?.textContent || 'No Title';
               const link = item.querySelector('link')?.textContent || '#';
               const pubDate = item.querySelector('pubDate')?.textContent ? new Date(item.querySelector('pubDate').textContent).toLocaleDateString() : '';
               const description = item.querySelector('description')?.textContent || '';
-              
               const cleanDesc = description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
 
               const div = document.createElement('div');
@@ -786,13 +817,48 @@
               count++;
             });
           } else {
-            container.innerHTML = '<p style="text-align: center; color: #ff5757;">No tech news articles found.</p>';
+            loadFallbackNews(container);
           }
         })
         .catch(error => {
-          console.error('Error fetching news:', error);
-          container.innerHTML = '<p style="text-align: center; color: #ff5757;">Unable to fetch news articles right now.</p>';
+          console.warn('Live RSS feed blocked or unavailable. Loading curated tech news fallback:', error);
+          loadFallbackNews(container);
         });
+    }
+
+    function loadFallbackNews(container) {
+      container.innerHTML = '';
+      const fallbackArticles = [
+        { 
+          title: "Next-Gen GPU Architecture Breakthroughs: What Builders Should Expect", 
+          link: "https://news.google.com/search?q=PC+hardware+news", 
+          date: "October 2026", 
+          desc: "Exploring how new thermal efficiencies and architectural shifts are redefining high-end 4K gaming rigs and workstation builds." 
+        },
+        { 
+          title: "The Importance of Custom Web Solutions and Digital Consultancy", 
+          link: "https://news.google.com/search?q=web+development+tech+news", 
+          date: "October 2026", 
+          desc: "Why modern tech brands and businesses need robust web infrastructure alongside dependable hardware to succeed." 
+        },
+        { 
+          title: "Essential Maintenance Tips: Extending Your Laptop & Desktop Lifespan", 
+          link: "https://news.google.com/search?q=PC+repair+maintenance", 
+          date: "October 2026", 
+          desc: "Expert advice on thermal paste replacement, dust clearance, and proactive diagnostics to keep your system running at peak velocity." 
+        }
+      ];
+
+      fallbackArticles.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'news-item';
+        div.innerHTML = `
+          <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h5>
+          <p><small style="color: #40e0d0;">Published: ${item.date}</small></p>
+          <p>${item.desc}</p>
+        `;
+        container.appendChild(div);
+      });
     }
 
     function submitCustomBuild() {
