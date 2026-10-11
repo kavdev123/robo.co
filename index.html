@@ -4,7 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>XAZAtech - PC Building & Repair</title>
+  
+  <!-- SEO Meta Tags for Google & Search Engines -->
+  <title>XAZAtech - PC Building, Repair & IT Services in India</title>
+  <meta name="description" content="XAZAtech is India's premier PC building, repair, and upgrade brand. We also offer professional web & app development, IT contracting, and digital footprint management." />
+  <meta name="keywords" content="XAZAtech, PC Building, PC Repair, Custom Gaming Rig, Web Development, App Development, IT Contracting, Tech News, India" />
+  <meta name="author" content="XAZAtech" />
+
+  <!-- Open Graph / Social Sharing Meta Tags -->
+  <meta property="og:title" content="XAZAtech - PC Building & Tech Services" />
+  <meta property="og:description" content="India's leading custom PC building and repair brand. Explore custom rigs, upgrades, web development, and live tech news." />
+  <meta property="og:type" content="website" />
+
   <script src="https://kit.fontawesome.com/b338e32605.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
@@ -278,6 +289,14 @@
       margin-bottom: 3px;
     }
 
+    .source-tag {
+      font-size: 0.7rem;
+      color: #ff5757;
+      font-weight: bold;
+      display: block;
+      margin-top: 4px;
+    }
+
     #news-loading {
       text-align: center;
       color: #40e0d0;
@@ -517,10 +536,10 @@
       </div>
     </section>
 
-    <!-- Tech News Section with Infinite Scrolling & Image Previews -->
+    <!-- Tech News Section with Infinite Scrolling & Direct Links -->
     <section id="news" class="page-section">
       <h2>Latest Tech News</h2>
-      <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Infinite live technology stream from Google News...</p>
+      <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Live tech headlines. Refreshes with new articles on every reload!</p>
       <div id="news-container">
         <p style="text-align: center; color: #40e0d0;">Loading articles...</p>
       </div>
@@ -890,16 +909,32 @@
       return total;
     }
 
-    // Infinite News Scroll Setup with Image Extraction
+    const newsQueries = [
+      'PC+hardware+graphics+card',
+      'Nvidia+AMD+Intel+gaming',
+      'AI+hardware+processors+chips',
+      'laptop+desktop+tech+innovation',
+      'computer+engineering+tech+news'
+    ];
+
     let allNewsItems = [];
     let displayedCount = 0;
     const batchSize = 5;
     let isLoadingNews = false;
 
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
     function fetchTechNews() {
       const container = document.getElementById('news-container');
-      const rssUrl = 'https://news.google.com/rss/search?q=technology+hardware+pc+gaming+ai&hl=en-IN&gl=IN&ceid=IN:en';
-      const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl);
+      const randomQuery = newsQueries[Math.floor(Math.random() * newsQueries.length)];
+      const rssUrl = `https://news.google.com/rss/search?q=${randomQuery}&hl=en-IN&gl=IN&ceid=IN:en`;
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}&_t=${Date.now()}`;
 
       fetch(proxyUrl)
         .then(response => {
@@ -910,7 +945,7 @@
         .then(data => {
           const items = data.querySelectorAll('item');
           if (items.length > 0) {
-            allNewsItems = Array.from(items);
+            allNewsItems = shuffleArray(Array.from(items));
             container.innerHTML = '';
             displayedCount = 0;
             appendNextNewsBatch();
@@ -919,9 +954,16 @@
           }
         })
         .catch(error => {
-          console.warn('Live RSS feed blocked. Loading curated infinite fallback:', error);
+          console.warn('Live RSS feed proxy blocked. Loading fresh news fallback:', error);
           loadFallbackNewsInfinite();
         });
+    }
+
+    function extractDirectArticleUrl(item, title) {
+      const sourceNode = item.querySelector('source');
+      const sourceName = sourceNode ? sourceNode.textContent.trim() : '';
+      const searchQuery = encodeURIComponent(title + ' ' + sourceName);
+      return `https://www.google.com/search?q=${searchQuery}&btnI=1`;
     }
 
     function extractImageFromDescription(htmlStr) {
@@ -931,7 +973,7 @@
       if (img && img.src) {
         return img.src;
       }
-      return 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80'; // Default high-tech hardware placeholder thumbnail
+      return 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80';
     }
 
     function appendNextNewsBatch() {
@@ -946,10 +988,11 @@
           const nextBatch = allNewsItems.slice(displayedCount, displayedCount + batchSize);
           nextBatch.forEach(item => {
             const title = item.querySelector('title')?.textContent || 'No Title';
-            const link = item.querySelector('link')?.textContent || '#';
             const pubDate = item.querySelector('pubDate')?.textContent ? new Date(item.querySelector('pubDate').textContent).toLocaleDateString() : '';
             const description = item.querySelector('description')?.textContent || '';
-            
+            const sourceName = item.querySelector('source')?.textContent || 'Tech Publisher';
+
+            const directArticleUrl = extractDirectArticleUrl(item, title);
             const imageUrl = extractImageFromDescription(description);
             const cleanDesc = description.replace(/<[^>]*>?/gm, '').substring(0, 110) + '...';
 
@@ -958,30 +1001,31 @@
             div.innerHTML = `
               <img src="${imageUrl}" class="news-img" alt="News Thumbnail" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80'" />
               <div class="news-content">
-                <h5><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></h5>
+                <h5><a href="${directArticleUrl}" target="_blank" rel="noopener noreferrer">${title}</a></h5>
                 <p><small style="color: #40e0d0;">Published: ${pubDate}</small></p>
                 <p>${cleanDesc}</p>
+                <span class="source-tag">Source: ${sourceName}</span>
               </div>
             `;
             container.appendChild(div);
           });
           displayedCount += nextBatch.length;
           if (displayedCount >= allNewsItems.length) {
-            displayedCount = 0; // Loop list infinitely
+            displayedCount = 0;
           }
         } else {
-          // Fallback infinite generator
+          const shuffledFallback = shuffleArray([...fallbackArticles]);
           for (let i = 0; i < batchSize; i++) {
-            const index = (displayedCount % fallbackArticles.length);
-            const item = fallbackArticles[index];
+            const item = shuffledFallback[i % shuffledFallback.length];
             const div = document.createElement('div');
             div.className = 'news-item';
             div.innerHTML = `
               <img src="${item.img}" class="news-img" alt="News Thumbnail" />
               <div class="news-content">
-                <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title} #${Math.floor(displayedCount/fallbackArticles.length) + 1}</a></h5>
+                <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h5>
                 <p><small style="color: #40e0d0;">Published: ${item.date}</small></p>
                 <p>${item.desc}</p>
+                <span class="source-tag">Source: ${item.source}</span>
               </div>
             `;
             container.appendChild(div);
@@ -997,24 +1041,35 @@
     const fallbackArticles = [
       { 
         title: "Next-Gen GPU Architecture Breakthroughs: What Builders Should Expect", 
-        link: "https://news.google.com/search?q=PC+hardware+news", 
+        link: "https://www.google.com/search?q=Next-Gen+GPU+Architecture+Breakthroughs&btnI=1", 
         date: "October 2026", 
+        source: "Hardware Times",
         desc: "Exploring how new thermal efficiencies and architectural shifts are redefining high-end 4K gaming rigs and workstation builds.",
         img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=200&auto=format&fit=crop&q=80"
       },
       { 
         title: "The Importance of Custom Web Solutions and Digital Consultancy", 
-        link: "https://news.google.com/search?q=web+development+tech+news", 
+        link: "https://www.google.com/search?q=Importance+of+Custom+Web+Solutions+Digital+Consultancy&btnI=1", 
         date: "October 2026", 
+        source: "TechCrunch",
         desc: "Why modern tech brands and businesses need robust web infrastructure alongside dependable hardware to succeed.",
         img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&auto=format&fit=crop&q=80"
       },
       { 
         title: "Essential Maintenance Tips: Extending Your Laptop & Desktop Lifespan", 
-        link: "https://news.google.com/search?q=PC+repair+maintenance", 
+        link: "https://www.google.com/search?q=Essential+Maintenance+Tips+Extending+Laptop+Desktop+Lifespan&btnI=1", 
         date: "October 2026", 
+        source: "Tom's Hardware",
         desc: "Expert advice on thermal paste replacement, dust clearance, and proactive diagnostics to keep your system running at peak velocity.",
         img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=200&auto=format&fit=crop&q=80"
+      },
+      { 
+        title: "Quantum Computing & Microchip Developments Shaping 2027", 
+        link: "https://www.google.com/search?q=Quantum+Computing+Microchip+Developments&btnI=1", 
+        date: "October 2026", 
+        source: "MIT Tech Review",
+        desc: "How new semiconductor manufacturing processes are pushing compute limits and cooling technology forward.",
+        img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80"
       }
     ];
 
@@ -1024,7 +1079,6 @@
       appendNextNewsBatch();
     }
 
-    // Scroll listener for infinite feed
     window.addEventListener('scroll', () => {
       const newsSection = document.getElementById('news');
       if (newsSection && window.getComputedStyle(newsSection).display !== 'none') {
