@@ -135,6 +135,7 @@
 
     body:has(#about:target) #home-view,
     body:has(#contact:target) #home-view,
+    body:has(#news:target) #home-view,
     body:has(#pcbuilder:target) #home-view,
     body:has(#pcrepair:target) #home-view,
     body:has(#upgrade:target) #home-view,
@@ -144,6 +145,7 @@
 
     #about:target,
     #contact:target,
+    #news:target,
     #pcbuilder:target,
     #pcrepair:target,
     #upgrade:target,
@@ -171,6 +173,38 @@
       line-height: 1.6;
     }
 
+    /* News Card Styles */
+    .news-item {
+      background-color: #192841;
+      border: 1px solid #40e0d0;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: transform 0.2s;
+    }
+
+    .news-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
+    }
+
+    .news-item h5 a {
+      color: #40e0d0;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .news-item h5 a:hover {
+      color: #ff5757;
+      text-decoration: underline;
+    }
+
+    .news-item p {
+      font-size: 0.85rem !important;
+      color: #cccccc !important;
+      margin-bottom: 5px;
+    }
+
     label {
       color: #ffffff !important;
       font-size: 0.75rem;
@@ -195,7 +229,6 @@
       color: #ccc !important;
     }
 
-    /* Professional Aligned Checkbox Grid Styling */
     #repair-services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -314,6 +347,7 @@
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#about">About Us</a>
+      <a href="#news">Tech News</a>
       <a href="#contact">Contact Us</a>
     </div>
   </div>
@@ -337,9 +371,20 @@
     <!-- About Us Section -->
     <section id="about" class="page-section">
       <h2>About Us</h2>
-      <p>Welcome to <strong>XAZAtech</strong>, India's premier destination for custom PC building, hardware diagnostics, and professional device upgrades. Founded by technology enthusiasts, we strive to bring top-tier performance computing closer to every gamer, creator, and professional.</p>
-      <p>Whether you need a heavy-duty 4K gaming rig, urgent system repairs, or a quick performance boost, our expert technicians ensure high-end quality assurance and seamless support every step of the way.</p><p>Our services also include Web Development and proffesional tech consultancy.</p>
-      <p>We live on one motto "Knowledge is Power"</p>
+      <p>Welcome to <strong>XAZAtech</strong>, India's premier destination for custom PC building, hardware diagnostics, and professional device upgrades. Our services also include Web Development and professional tech consultancy. We live on one motto: <em>"Knowledge is Power"</em>.</p>
+      <p>Founded by passionate technology and engineering experts, XAZAtech was built with a vision to revolutionize the tech service landscape. Whether you need a heavy-duty 4K gaming rig, a custom digital web presence, expert consultancy, or urgent system repairs, our team ensures high-end quality assurance and seamless support every step of the way.</p>
+      <div class="text-center">
+        <a href="#" class="back-btn">Back to Home</a>
+      </div>
+    </section>
+
+    <!-- Tech News Section -->
+    <section id="news" class="page-section">
+      <h2>Latest Tech News</h2>
+      <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Fetching live technology headlines from Google News...</p>
+      <div id="news-container">
+        <p style="text-align: center; color: #40e0d0;">Loading articles...</p>
+      </div>
       <div class="text-center">
         <a href="#" class="back-btn">Back to Home</a>
       </div>
@@ -416,7 +461,7 @@
       </form>
     </section>
 
-    <!-- PC Repair Request Form with Professional Checkboxes -->
+    <!-- PC Repair Request Form -->
     <section id="pcrepair" class="page-section">
       <h2>PC Repair Request</h2>
       <form id="pcrepair-form">
@@ -460,17 +505,17 @@
 
         <div class="form-group">
           <label>Issue Category *</label>
-          <select name="issueCategory" class="form-control" required>
-            <option>No Power</option>
-            <option>No Boot / OS Error</option>
-            <option>Blue Screen / Crash</option>
-            <option>Slow Performance</option>
-            <option>Overheating</option>
-            <option>Display / GPU</option>
-            <option>Storage / Disk Failure</option>
-            <option>Network / Wi-Fi</option>
-            <option>Virus / Malware</option>
-            <option>Other</option>
+          <select name="issueCategory" id="issue-category-select" class="form-control" required>
+            <option value="No Power">No Power</option>
+            <option value="No Boot / OS Error">No Boot / OS Error</option>
+            <option value="Blue Screen / Crash">Blue Screen / Crash</option>
+            <option value="Slow Performance">Slow Performance</option>
+            <option value="Overheating">Overheating</option>
+            <option value="Display / GPU">Display / GPU</option>
+            <option value="Storage / Disk Failure">Storage / Disk Failure</option>
+            <option value="Network / Wi-Fi">Network / Wi-Fi</option>
+            <option value="Virus / Malware">Virus / Malware</option>
+            <option value="Other">Other</option>
           </select>
         </div>
 
@@ -513,18 +558,9 @@
         </div>
 
         <div class="form-group">
-          <label>Service Options & Estimated Costs</label>
+          <label>Recommended Service Options & Estimated Costs</label>
           <div id="repair-services">
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="diagnostics" class="repair-service" data-price="500" /> Diagnostics — ₹500</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="thermal" class="repair-service" data-price="800" /> Thermal Paste & Cleaning — ₹800</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="os" class="repair-service" data-price="1500" /> OS Reinstall — ₹1500</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="virus" class="repair-service" data-price="1200" /> Virus/Malware Cleanup — ₹1200</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="data-basic" class="repair-service" data-price="3000" /> Data Recovery (Basic) — ₹3000</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="data-adv" class="repair-service" data-price="8000" /> Data Recovery (Advanced) — ₹8000</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="screen" class="repair-service" data-price="6000" /> Screen Replacement (Laptop) — ₹6000</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="battery" class="repair-service" data-price="3000" /> Battery Replacement (Laptop) — ₹3000</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="keyboard" class="repair-service" data-price="1200" /> Keyboard Replacement — ₹1200</label>
-            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="liquid" class="repair-service" data-price="1500" /> Liquid Damage Inspection — ₹1500</label>
+            <!-- Dynamically populated based on issue category -->
           </div>
           <div id="repair-estimate" style="margin-top:10px;color:#40e0d0;font-weight:bold;">Estimated Repair Cost: ₹0</div>
         </div>
@@ -614,17 +650,91 @@
   </footer>
 
   <script>
+    const serviceCatalog = {
+      "No Power": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "power-supply", name: "Power Supply Check/Replacement", price: 1200 }
+      ],
+      "No Boot / OS Error": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "os", name: "OS Reinstall", price: 1500 },
+        { id: "data-basic", name: "Data Recovery (Basic)", price: 3000 }
+      ],
+      "Blue Screen / Crash": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "os", name: "OS Reinstall", price: 1500 },
+        { id: "virus", name: "Virus/Malware Cleanup", price: 1200 }
+      ],
+      "Slow Performance": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "os", name: "OS Reinstall", price: 1500 },
+        { id: "virus", name: "Virus/Malware Cleanup", price: 1200 },
+        { id: "thermal", name: "Thermal Paste & Cleaning", price: 800 }
+      ],
+      "Overheating": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "thermal", name: "Thermal Paste & Cleaning", price: 800 }
+      ],
+      "Display / GPU": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "screen", name: "Screen Replacement (Laptop)", price: 6000 }
+      ],
+      "Storage / Disk Failure": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "data-basic", name: "Data Recovery (Basic)", price: 3000 },
+        { id: "data-adv", name: "Data Recovery (Advanced)", price: 8000 }
+      ],
+      "Network / Wi-Fi": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "network-repair", name: "Wi-Fi Card / Driver Fix", price: 1000 }
+      ],
+      "Virus / Malware": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "virus", name: "Virus/Malware Cleanup", price: 1200 },
+        { id: "os", name: "OS Reinstall", price: 1500 }
+      ],
+      "Other": [
+        { id: "diagnostics", name: "Diagnostics", price: 500 },
+        { id: "liquid", name: "Liquid Damage Inspection", price: 1500 },
+        { id: "keyboard", name: "Keyboard Replacement", price: 1200 },
+        { id: "battery", name: 'Battery Replacement (Laptop)', price: 3000 }
+      ]
+    };
+
+    function updateServiceOptions() {
+      const categorySelect = document.getElementById('issue-category-select');
+      const container = document.getElementById('repair-services');
+      if (!categorySelect || !container) return;
+
+      const selectedCategory = categorySelect.value;
+      const options = serviceCatalog[selectedCategory] || serviceCatalog["Other"];
+
+      container.innerHTML = '';
+      options.forEach(opt => {
+        const label = document.createElement('label');
+        label.className = 'repair-service-label';
+        label.innerHTML = `<input type="checkbox" name="serviceOptions" value="${opt.id}" class="repair-service" data-price="${opt.price}" /> ${opt.name} — ₹${opt.price}`;
+        container.appendChild(label);
+      });
+
+      document.querySelectorAll('.repair-service').forEach(cb => cb.addEventListener('change', updateRepairEstimate));
+      updateRepairEstimate();
+    }
+
     function attachRepairHandlers() {
       const serviceSel = document.getElementById('service-select');
-      if (!serviceSel) return;
+      const categorySel = document.getElementById('issue-category-select');
+      if (!serviceSel || !categorySel) return;
+
       const pickupGroup = document.getElementById('pickup-address-group');
       serviceSel.addEventListener('change', () => {
         if (serviceSel.value === 'pickup') pickupGroup.style.display = 'block';
         else pickupGroup.style.display = 'none';
+        updateRepairEstimate();
       });
-      const serviceChecks = document.querySelectorAll('.repair-service');
-      serviceChecks.forEach(cb => cb.addEventListener('change', updateRepairEstimate));
-      serviceSel.addEventListener('change', updateRepairEstimate);
+
+      categorySel.addEventListener('change', updateServiceOptions);
+      updateServiceOptions();
     }
 
     function updateRepairEstimate() {
@@ -638,6 +748,38 @@
       const el = document.getElementById('repair-estimate');
       if (el) el.textContent = 'Estimated Repair Cost: ₹' + total.toLocaleString();
       return total;
+    }
+
+    function fetchTechNews() {
+      const container = document.getElementById('news-container');
+      const rssUrl = 'https://news.google.com/rss/search?q=technology+hardware+pc+gaming&hl=en-IN&gl=IN&ceid=IN:en';
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok' && data.items) {
+            container.innerHTML = '';
+            // Display top 6 news articles
+            data.items.slice(0, 6).forEach(item => {
+              const pubDate = new Date(item.pubDate).toLocaleDateString();
+              const div = document.createElement('div');
+              div.className = 'news-item';
+              div.innerHTML = `
+                <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h5>
+                <p><small style="color: #40e0d0;">Published: ${pubDate}</small></p>
+                <p>${item.description ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...' : ''}</p>
+              `;
+              container.appendChild(div);
+            });
+          } else {
+            container.innerHTML = '<p style="text-align: center; color: #ff5757;">Failed to load tech news at this time.</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching news:', error);
+          container.innerHTML = '<p style="text-align: center; color: #ff5757;">Unable to fetch news articles right now.</p>';
+        });
     }
 
     function submitCustomBuild() {
@@ -775,6 +917,7 @@
 
     window.onload = function () {
       attachRepairHandlers();
+      fetchTechNews();
     };
   </script>
 </body>
