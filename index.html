@@ -136,6 +136,7 @@
     body:has(#about:target) #home-view,
     body:has(#contact:target) #home-view,
     body:has(#news:target) #home-view,
+    body:has(#otherservices:target) #home-view,
     body:has(#pcbuilder:target) #home-view,
     body:has(#pcrepair:target) #home-view,
     body:has(#upgrade:target) #home-view,
@@ -146,6 +147,7 @@
     #about:target,
     #contact:target,
     #news:target,
+    #otherservices:target,
     #pcbuilder:target,
     #pcrepair:target,
     #upgrade:target,
@@ -173,7 +175,39 @@
       line-height: 1.6;
     }
 
-    /* Founder Card Styling */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .service-card {
+      background-color: #192841;
+      border: 1px solid #40e0d0;
+      border-radius: 10px;
+      padding: 18px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(64, 224, 208, 0.3);
+    }
+
+    .service-card h4 {
+      color: #ff5757;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.9rem !important;
+      color: #e2e8f0 !important;
+      margin-bottom: 0;
+    }
+
     .founder-card {
       background-color: #192841;
       border: 2px dashed #ff5757;
@@ -196,13 +230,16 @@
       margin-bottom: 8px;
     }
 
-    /* News Card Styles */
+    /* News Card Styles with Image Integration */
     .news-item {
       background-color: #192841;
       border: 1px solid #40e0d0;
       padding: 15px;
       border-radius: 8px;
       margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
       transition: transform 0.2s;
     }
 
@@ -211,10 +248,23 @@
       box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
     }
 
+    .news-img {
+      width: 100px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #40e0d0;
+      flex-shrink: 0;
+    }
+
+    .news-content {
+      flex: 1;
+    }
+
     .news-item h5 a {
       color: #40e0d0;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .news-item h5 a:hover {
@@ -223,9 +273,18 @@
     }
 
     .news-item p {
-      font-size: 0.85rem !important;
+      font-size: 0.8rem !important;
       color: #cccccc !important;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
+    }
+
+    #news-loading {
+      text-align: center;
+      color: #40e0d0;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.75rem;
+      margin: 20px 0;
+      display: none;
     }
 
     label {
@@ -359,6 +418,14 @@
         padding: 30px 10px;
         width: 100%;
       }
+      .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .news-img {
+        width: 100%;
+        height: 150px;
+      }
     }
   </style>
 </head>
@@ -370,6 +437,7 @@
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="#about">About Us</a>
+      <a href="#otherservices">Other Services</a>
       <a href="#news">Tech News</a>
       <a href="#contact">Contact Us</a>
     </div>
@@ -388,6 +456,7 @@
         <a href="#pcbuilder">Get a New PC</a>
         <a href="#pcrepair">PC Repairs</a>
         <a href="#upgrade">Upgrade your PC</a>
+        <a href="#otherservices">Other Services</a>
       </section>
     </div>
 
@@ -410,14 +479,53 @@
       </div>
     </section>
 
-    <!-- Tech News Section -->
+    <!-- Other Services Section -->
+    <section id="otherservices" class="page-section">
+      <h2>Other Professional Services</h2>
+      <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Empowering your business and digital presence with top-tier technology solutions.</p>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <h4>Web & App Development</h4>
+          <p>Custom, high-performance websites and mobile applications tailored to scale your brand and engage audiences seamlessly.</p>
+        </div>
+        <div class="service-card">
+          <h4>IT Contracting</h4>
+          <p>Reliable, expert technology staffing and infrastructure contracting solutions for corporate and growing enterprise environments.</p>
+        </div>
+        <div class="service-card">
+          <h4>Customized Consultancy</h4>
+          <p>Strategic technology guidance and technical architecture planning designed to solve complex business challenges.</p>
+        </div>
+        <div class="service-card">
+          <h4>Web Graphic Designing</h4>
+          <p>Stunning, modern visual assets, UI/UX designs, and brand graphics optimized for digital experiences.</p>
+        </div>
+        <div class="service-card">
+          <h4>Social Media Management</h4>
+          <p>Comprehensive social strategy, content curation, and audience engagement to build a powerful online community.</p>
+        </div>
+        <div class="service-card">
+          <h4>Digital Footprint Management</h4>
+          <p>Proactive brand monitoring, reputation enhancement, and SEO optimization to secure your digital authority.</p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="#contact" class="btn-custom" style="text-decoration:none;">Inquire About Services</a>
+        <a href="#" class="back-btn">Back to Home</a>
+      </div>
+    </section>
+
+    <!-- Tech News Section with Infinite Scrolling & Image Previews -->
     <section id="news" class="page-section">
       <h2>Latest Tech News</h2>
-      <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Fetching live technology headlines from Google News...</p>
+      <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px;">Infinite live technology stream from Google News...</p>
       <div id="news-container">
         <p style="text-align: center; color: #40e0d0;">Loading articles...</p>
       </div>
-      <div class="text-center">
+      <div id="news-loading">Loading more headlines...</div>
+      <div class="text-center mt-3">
         <a href="#" class="back-btn">Back to Home</a>
       </div>
     </section>
@@ -782,9 +890,15 @@
       return total;
     }
 
+    // Infinite News Scroll Setup with Image Extraction
+    let allNewsItems = [];
+    let displayedCount = 0;
+    const batchSize = 5;
+    let isLoadingNews = false;
+
     function fetchTechNews() {
       const container = document.getElementById('news-container');
-      const rssUrl = 'https://news.google.com/rss/search?q=technology+hardware+pc+gaming&hl=en-IN&gl=IN&ceid=IN:en';
+      const rssUrl = 'https://news.google.com/rss/search?q=technology+hardware+pc+gaming+ai&hl=en-IN&gl=IN&ceid=IN:en';
       const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl);
 
       fetch(proxyUrl)
@@ -796,70 +910,131 @@
         .then(data => {
           const items = data.querySelectorAll('item');
           if (items.length > 0) {
+            allNewsItems = Array.from(items);
             container.innerHTML = '';
-            let count = 0;
-            items.forEach(item => {
-              if (count >= 5) return;
-              const title = item.querySelector('title')?.textContent || 'No Title';
-              const link = item.querySelector('link')?.textContent || '#';
-              const pubDate = item.querySelector('pubDate')?.textContent ? new Date(item.querySelector('pubDate').textContent).toLocaleDateString() : '';
-              const description = item.querySelector('description')?.textContent || '';
-              const cleanDesc = description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
-
-              const div = document.createElement('div');
-              div.className = 'news-item';
-              div.innerHTML = `
-                <h5><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></h5>
-                <p><small style="color: #40e0d0;">Published: ${pubDate}</small></p>
-                <p>${cleanDesc}</p>
-              `;
-              container.appendChild(div);
-              count++;
-            });
+            displayedCount = 0;
+            appendNextNewsBatch();
           } else {
-            loadFallbackNews(container);
+            loadFallbackNewsInfinite();
           }
         })
         .catch(error => {
-          console.warn('Live RSS feed blocked or unavailable. Loading curated tech news fallback:', error);
-          loadFallbackNews(container);
+          console.warn('Live RSS feed blocked. Loading curated infinite fallback:', error);
+          loadFallbackNewsInfinite();
         });
     }
 
-    function loadFallbackNews(container) {
-      container.innerHTML = '';
-      const fallbackArticles = [
-        { 
-          title: "Next-Gen GPU Architecture Breakthroughs: What Builders Should Expect", 
-          link: "https://news.google.com/search?q=PC+hardware+news", 
-          date: "October 2026", 
-          desc: "Exploring how new thermal efficiencies and architectural shifts are redefining high-end 4K gaming rigs and workstation builds." 
-        },
-        { 
-          title: "The Importance of Custom Web Solutions and Digital Consultancy", 
-          link: "https://news.google.com/search?q=web+development+tech+news", 
-          date: "October 2026", 
-          desc: "Why modern tech brands and businesses need robust web infrastructure alongside dependable hardware to succeed." 
-        },
-        { 
-          title: "Essential Maintenance Tips: Extending Your Laptop & Desktop Lifespan", 
-          link: "https://news.google.com/search?q=PC+repair+maintenance", 
-          date: "October 2026", 
-          desc: "Expert advice on thermal paste replacement, dust clearance, and proactive diagnostics to keep your system running at peak velocity." 
-        }
-      ];
-
-      fallbackArticles.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'news-item';
-        div.innerHTML = `
-          <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h5>
-          <p><small style="color: #40e0d0;">Published: ${item.date}</small></p>
-          <p>${item.desc}</p>
-        `;
-        container.appendChild(div);
-      });
+    function extractImageFromDescription(htmlStr) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = htmlStr;
+      const img = tempDiv.querySelector('img');
+      if (img && img.src) {
+        return img.src;
+      }
+      return 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80'; // Default high-tech hardware placeholder thumbnail
     }
+
+    function appendNextNewsBatch() {
+      if (isLoadingNews) return;
+      isLoadingNews = true;
+      const container = document.getElementById('news-container');
+      const loadingIndicator = document.getElementById('news-loading');
+      if (loadingIndicator) loadingIndicator.style.display = 'block';
+
+      setTimeout(() => {
+        if (allNewsItems.length > 0) {
+          const nextBatch = allNewsItems.slice(displayedCount, displayedCount + batchSize);
+          nextBatch.forEach(item => {
+            const title = item.querySelector('title')?.textContent || 'No Title';
+            const link = item.querySelector('link')?.textContent || '#';
+            const pubDate = item.querySelector('pubDate')?.textContent ? new Date(item.querySelector('pubDate').textContent).toLocaleDateString() : '';
+            const description = item.querySelector('description')?.textContent || '';
+            
+            const imageUrl = extractImageFromDescription(description);
+            const cleanDesc = description.replace(/<[^>]*>?/gm, '').substring(0, 110) + '...';
+
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            div.innerHTML = `
+              <img src="${imageUrl}" class="news-img" alt="News Thumbnail" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=200&auto=format&fit=crop&q=80'" />
+              <div class="news-content">
+                <h5><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></h5>
+                <p><small style="color: #40e0d0;">Published: ${pubDate}</small></p>
+                <p>${cleanDesc}</p>
+              </div>
+            `;
+            container.appendChild(div);
+          });
+          displayedCount += nextBatch.length;
+          if (displayedCount >= allNewsItems.length) {
+            displayedCount = 0; // Loop list infinitely
+          }
+        } else {
+          // Fallback infinite generator
+          for (let i = 0; i < batchSize; i++) {
+            const index = (displayedCount % fallbackArticles.length);
+            const item = fallbackArticles[index];
+            const div = document.createElement('div');
+            div.className = 'news-item';
+            div.innerHTML = `
+              <img src="${item.img}" class="news-img" alt="News Thumbnail" />
+              <div class="news-content">
+                <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title} #${Math.floor(displayedCount/fallbackArticles.length) + 1}</a></h5>
+                <p><small style="color: #40e0d0;">Published: ${item.date}</small></p>
+                <p>${item.desc}</p>
+              </div>
+            `;
+            container.appendChild(div);
+            displayedCount++;
+          }
+        }
+
+        if (loadingIndicator) loadingIndicator.style.display = 'none';
+        isLoadingNews = false;
+      }, 500);
+    }
+
+    const fallbackArticles = [
+      { 
+        title: "Next-Gen GPU Architecture Breakthroughs: What Builders Should Expect", 
+        link: "https://news.google.com/search?q=PC+hardware+news", 
+        date: "October 2026", 
+        desc: "Exploring how new thermal efficiencies and architectural shifts are redefining high-end 4K gaming rigs and workstation builds.",
+        img: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=200&auto=format&fit=crop&q=80"
+      },
+      { 
+        title: "The Importance of Custom Web Solutions and Digital Consultancy", 
+        link: "https://news.google.com/search?q=web+development+tech+news", 
+        date: "October 2026", 
+        desc: "Why modern tech brands and businesses need robust web infrastructure alongside dependable hardware to succeed.",
+        img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&auto=format&fit=crop&q=80"
+      },
+      { 
+        title: "Essential Maintenance Tips: Extending Your Laptop & Desktop Lifespan", 
+        link: "https://news.google.com/search?q=PC+repair+maintenance", 
+        date: "October 2026", 
+        desc: "Expert advice on thermal paste replacement, dust clearance, and proactive diagnostics to keep your system running at peak velocity.",
+        img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=200&auto=format&fit=crop&q=80"
+      }
+    ];
+
+    function loadFallbackNewsInfinite() {
+      allNewsItems = [];
+      displayedCount = 0;
+      appendNextNewsBatch();
+    }
+
+    // Scroll listener for infinite feed
+    window.addEventListener('scroll', () => {
+      const newsSection = document.getElementById('news');
+      if (newsSection && window.getComputedStyle(newsSection).display !== 'none') {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const currentScroll = window.scrollY;
+        if (currentScroll >= scrollableHeight - 300) {
+          appendNextNewsBatch();
+        }
+      }
+    });
 
     function submitCustomBuild() {
       const form = document.getElementById('pcbuild-form');
