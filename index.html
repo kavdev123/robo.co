@@ -961,14 +961,12 @@
       const pct = curScore ? Math.round(((newScore - curScore) / curScore) * 100) : 0;
 
       const warnings = [];
-      // simple compatibility hint: CPU brand change may require mobo change
       const curCpuObj = getItemById('cpu', curCpu);
       const newCpuObj = getItemById('cpu', newCpu);
       if (curCpuObj && newCpuObj && curCpuObj.brand && newCpuObj.brand && curCpuObj.brand !== newCpuObj.brand) {
         warnings.push('CPU brand changed. You may need a new motherboard if keeping existing board.');
       }
 
-      // render results
       document.getElementById('upgrade-warnings').textContent = warnings.join(' ');
       document.getElementById('upgrade-price').textContent = `Current parts total: ₹${curTotal.toLocaleString()} — Upgraded parts total: ₹${newTotal.toLocaleString()} — Price change: ₹${delta.toLocaleString()}`;
       document.getElementById('upgrade-performance').textContent = `Estimated performance delta: ${pct}% (score ${curScore} → ${newScore})`;
@@ -981,7 +979,26 @@
         const plan = { formId: 'upgrade', type: 'upgrade-plan', current: curItems.map(i=>i?{id:i.id,name:i.name,price:i.price}:null), upgrade: newItems.map(i=>i?{id:i.id,name:i.name,price:i.price}:null), delta, curTotal, newTotal, curScore, newScore, created: Date.now() };
         let subs = JSON.parse(localStorage.getItem('submissions')) || [];
         subs.push(plan); localStorage.setItem('submissions', JSON.stringify(subs));
-        alert('Upgrade plan added to cart.');
+
+        // Send Upgrade Plan via FormSubmit.co
+        fetch("https://formsubmit.co/ajax/bindlish26@gmail.com", {
+          method: "POST",
+          headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              _subject: "New PC Upgrade Plan from XAZAtech",
+              Price_Change: `₹${delta.toLocaleString()}`,
+              New_Total: `₹${newTotal.toLocaleString()}`,
+              Upgrade_Details: JSON.stringify(plan, null, 2)
+          })
+        })
+        .then(response => response.json())
+        .then(response => console.log('Upgrade email sent successfully!', response))
+        .catch(error => console.error('Failed to send upgrade email:', error));
+
+        alert('Upgrade plan added to cart & email sent.');
         goHome();
       };
       actions.appendChild(addBtn);
@@ -1001,7 +1018,6 @@
         total += item.price;
       });
 
-      // software checks
       const sw = [];
       document.querySelectorAll('.software-check').forEach(cb => {
         if (cb.checked) {
@@ -1016,7 +1032,6 @@
         html += '</ul></li>';
       }
 
-      // extras
       const ex = [];
       document.querySelectorAll('.extras-check').forEach(cb => {
         if (cb.checked) {
@@ -1051,7 +1066,7 @@
         selection[p] = { id: item.id, name: item.name, price: item.price };
         total += item.price;
       });
-      // software selections
+
       const software = [];
       document.querySelectorAll('.software-check').forEach(cb => {
         if (cb.checked) {
@@ -1060,7 +1075,7 @@
           if (s) { software.push({ id: s.id, name: s.name, price: s.price }); total += s.price; }
         }
       });
-      // extras
+
       const extras = [];
       document.querySelectorAll('.extras-check').forEach(cb => {
         if (cb.checked) {
@@ -1074,7 +1089,30 @@
       const build = { formId: 'pcbuilder', type: 'build', name, email, qty, selection, software, extras, total, created: Date.now() };
       submissions.push(build);
       localStorage.setItem('submissions', JSON.stringify(submissions));
-      alert('Build added to cart — Estimated total: ₹' + total.toLocaleString());
+
+      // SEND CUSTOM BUILD EMAIL VIA FORMSUBMIT.CO
+      fetch("https://formsubmit.co/ajax/bindlish26@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: "New Custom PC Build Submission from XAZAtech",
+            Customer_Name: name,
+            Customer_Email: email,
+            Quantity: qty,
+            Estimated_Total: `₹${total.toLocaleString()}`,
+            Build_Components: JSON.stringify(selection, null, 2),
+            Software: JSON.stringify(software, null, 2),
+            Extras: JSON.stringify(extras, null, 2)
+        })
+      })
+      .then(response => response.json())
+      .then(response => console.log('Build email sent successfully!', response))
+      .catch(error => console.error('Failed to send email:', error));
+
+      alert('Build added to cart & email sent — Estimated total: ₹' + total.toLocaleString());
       goHome();
     }
 
@@ -1111,20 +1149,37 @@
           data[el.name] = el.value;
         }
       }
-      // special: compute repair estimate when submitting repair form
+      
       if (formId === 'pcrepair') {
         const est = updateRepairEstimate();
         data.repairEstimate = est;
       }
+
       let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
       submissions.push({ formId, data });
       localStorage.setItem('submissions', JSON.stringify(submissions));
+
+      // SEND EMAIL VIA FORMSUBMIT.CO
+      fetch("https://formsubmit.co/ajax/bindlish26@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: `New ${formId.toUpperCase()} Submission from XAZAtech`,
+            ...data
+        })
+      })
+      .then(response => response.json())
+      .then(response => console.log('Email sent successfully!', response))
+      .catch(error => console.error('Failed to send email:', error));
+
       form.reset();
       showSection('thank-' + formId);
     }
 
     function showCart() {
-      // allow viewing cart without Google sign-in; data is stored locally
       document.querySelector('.home-buttons').style.display = 'none';
       document.querySelectorAll('.form-section, .thank-message').forEach(sec => sec.style.display = 'none');
       const cart = document.getElementById('cart');
@@ -1166,7 +1221,6 @@
         cartItems.appendChild(div);
       });
 
-      // show a small notice if user is not signed in
       if (!googleUser) {
         const note = document.createElement('p');
         note.style.color = '#ffd88a';
@@ -1197,22 +1251,16 @@
     }
 
     window.onload = function () {
-      // populate component selectors first
       populateSelectors();
-
-      // attach handlers for repair form behaviour
       attachRepairHandlers();
 
-      // restore user if previously signed in (basic check)
       const savedUser = localStorage.getItem('user');
       if (savedUser) {
-        // minimal UX: hide sign in placeholder until a real callback
         document.getElementById('g_id_signin').style.display = 'none';
         document.getElementById('signout-btn').style.display = 'inline-block';
         googleUser = { name: savedUser.split('@')[0], email: savedUser };
       }
 
-      // Google sign in
       if (window.google && google.accounts && google.accounts.id) {
         google.accounts.id.initialize({
           client_id: "YOUR_GOOGLE_CLIENT_ID",
