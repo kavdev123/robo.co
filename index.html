@@ -44,7 +44,6 @@
       flex-wrap: wrap;
     }
 
-    /* Styled Nav Buttons with #40e0d0 Borders & Design */
     .company-bar .nav-links a {
       color: #40e0d0;
       font-size: 0.7rem;
@@ -118,7 +117,6 @@
       text-decoration: none;
     }
 
-    /* HTML Logic Section Visibility Handling via :target */
     .page-section {
       display: none;
       width: 95%;
@@ -131,12 +129,10 @@
       box-shadow: 0 0 15px rgba(64, 224, 208, 0.2);
     }
 
-    /* By default, show home components when no specific anchor is targeted */
     body:not(:has(:target)) #home-view {
       display: block;
     }
 
-    /* When a section becomes the URL target, display it and hide home */
     body:has(#about:target) #home-view,
     body:has(#contact:target) #home-view,
     body:has(#pcbuilder:target) #home-view,
@@ -160,6 +156,12 @@
       text-align: center;
       margin-bottom: 20px;
       color: #ff5757;
+    }
+
+    .page-section h5 {
+      color: #40e0d0;
+      margin-top: 15px;
+      font-size: 0.9rem;
     }
 
     .page-section p {
@@ -265,7 +267,7 @@
 </head>
 
 <body>
-  <!-- Company Bar with Top Navigation Links (HTML Logic Routing) -->
+  <!-- Company Bar with Top Navigation Links -->
   <div class="company-bar">
     <span>XAZAtech</span>
     <div class="nav-links">
@@ -279,13 +281,11 @@
     
     <!-- Home View Container -->
     <div id="home-view">
-      <!-- Jumbotron -->
       <section class="jumbotron">
         <h1 class="jumbotron-heading">Build, Repair, Upgrade</h1>
         <p class="lead">India's leading PC Building and Repair brand. Get your custom PC or repairs done by experts.</p>
       </section>
 
-      <!-- Home Action Buttons -->
       <section class="home-buttons">
         <a href="#pcbuilder">Get a New PC</a>
         <a href="#pcrepair">PC Repairs</a>
@@ -297,7 +297,7 @@
     <section id="about" class="page-section">
       <h2>About Us</h2>
       <p>Welcome to <strong>XAZAtech</strong>, India's premier destination for custom PC building, hardware diagnostics, and professional device upgrades. Founded by technology enthusiasts, we strive to bring top-tier performance computing closer to every gamer, creator, and professional.</p>
-      <p>Whether you need a heavy-duty 4K gaming rig, urgent system repairs, or a quick performance boost via our upgrade simulator, our expert technicians ensure high-end quality assurance and seamless support every step of the way.</p>
+      <p>Whether you need a heavy-duty 4K gaming rig, urgent system repairs, or a quick performance boost, our expert technicians ensure high-end quality assurance and seamless support every step of the way.</p>
       <div class="text-center">
         <a href="#" class="back-btn">Back to Home</a>
       </div>
@@ -499,9 +499,9 @@
       </form>
     </section>
 
-    <!-- Upgrade Simulator Form -->
+    <!-- Upgrade Simulator Form with Typed-In Current Specs -->
     <section id="upgrade" class="page-section">
-      <h2>Upgrade Simulator</h2>
+      <h2>PC Upgrade Request</h2>
       <form id="upgrade-form">
         <div class="form-row">
           <div class="form-group col-12 col-md-6">
@@ -514,65 +514,51 @@
           </div>
         </div>
 
-        <h5>Current System</h5>
+        <h5>Current System Specs</h5>
         <div class="form-row">
           <div class="form-group col-12 col-md-6">
-            <label>CPU (Current)</label>
-            <select id="cur-cpu" class="form-control"></select>
+            <label>Current CPU *</label>
+            <input type="text" name="curCpu" class="form-control" required placeholder="e.g. Intel i5-10400" />
           </div>
           <div class="form-group col-12 col-md-6">
-            <label>GPU (Current)</label>
-            <select id="cur-gpu" class="form-control"></select>
+            <label>Current GPU *</label>
+            <input type="text" name="curGpu" class="form-control" required placeholder="e.g. NVIDIA GTX 1650" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-12 col-md-6">
-            <label>RAM (Current)</label>
-            <select id="cur-ram" class="form-control"></select>
+            <label>Current Case *</label>
+            <input type="text" name="curCase" class="form-control" required placeholder="e.g. NZXT H510" />
           </div>
           <div class="form-group col-12 col-md-6">
-            <label>Storage (Current)</label>
-            <select id="cur-storage" class="form-control"></select>
+            <label>Current Cooling *</label>
+            <input type="text" name="curCooling" class="form-control" required placeholder="e.g. Stock Air Cooler" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label>Current RAM *</label>
+            <input type="text" name="curRam" class="form-control" required placeholder="e.g. 16GB DDR4 3200MHz" />
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label>Current Storage *</label>
+            <input type="text" name="curStorage" class="form-control" required placeholder="e.g. 512GB NVMe SSD" />
           </div>
         </div>
 
-        <h5>Desired Upgrades</h5>
-        <div class="form-row">
-          <div class="form-group col-12 col-md-6">
-            <label>CPU (Upgrade To)</label>
-            <select id="new-cpu" class="form-control"></select>
-          </div>
-          <div class="form-group col-12 col-md-6">
-            <label>GPU (Upgrade To)</label>
-            <select id="new-gpu" class="form-control"></select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-12 col-md-6">
-            <label>RAM (Upgrade To)</label>
-            <select id="new-ram" class="form-control"></select>
-          </div>
-          <div class="form-group col-12 col-md-6">
-            <label>Storage (Upgrade To)</label>
-            <select id="new-storage" class="form-control"></select>
-          </div>
+        <div class="form-group">
+          <label>Desired Upgrades / Requirements *</label>
+          <textarea name="desiredUpgrades" rows="3" class="form-control" required placeholder="Describe what components you want to upgrade to..."></textarea>
         </div>
 
         <div class="d-flex flex-wrap align-items-center gap-2 justify-content-between mt-3">
-          <button type="button" class="btn-custom" onclick="simulateUpgrade()">Simulate & Send Upgrade Plan</button>
+          <button type="button" class="btn-custom" onclick="submitUpgradeForm()">Submit Upgrade Request</button>
           <a href="#" class="back-btn">Back</a>
-        </div>
-
-        <div id="upgrade-result" style="display:none;margin-top:15px;background:#192841;padding:12px;border-radius:8px;color:#fff;border: 1px solid #40e0d0;">
-          <h5>Simulation Result</h5>
-          <div id="upgrade-warnings" style="color:#ffb3b3;margin-bottom:8px;"></div>
-          <p id="upgrade-price"></p>
-          <p id="upgrade-performance"></p>
         </div>
       </form>
     </section>
 
-    <!-- Thank You Section (Target View) -->
+    <!-- Thank You Section -->
     <section id="thank-message" class="page-section text-center">
       <h2>Thank You!</h2>
       <p>Your request or message has been submitted successfully and sent to our team.</p>
@@ -586,53 +572,6 @@
   </footer>
 
   <script>
-    const catalog = {
-      cpu: [
-        { id: 'intel-i3-12100', name: 'Intel i3-12100', price: 9000, brand: 'Intel', score: 50 },
-        { id: 'intel-i5-12400f', name: 'Intel i5-12400F', price: 15000, brand: 'Intel', score: 85 },
-        { id: 'intel-i5-13400', name: 'Intel i5-13400', price: 18000, brand: 'Intel', score: 95 },
-        { id: 'intel-i7-12700', name: 'Intel i7-12700', price: 32000, brand: 'Intel', score: 150 },
-        { id: 'amd-5600x', name: 'AMD Ryzen 5 5600X', price: 17000, brand: 'AMD', score: 90 },
-        { id: 'amd-7600x', name: 'AMD Ryzen 5 7600X', price: 22000, brand: 'AMD', score: 120 }
-      ],
-      gpu: [
-        { id: 'gtx-1650', name: 'NVIDIA GTX 1650', price: 12000, brand: 'NVIDIA', score: 45 },
-        { id: 'rtx-3060', name: 'NVIDIA RTX 3060', price: 30000, brand: 'NVIDIA', score: 120 },
-        { id: 'rtx-4060', name: 'NVIDIA RTX 4060', price: 42000, brand: 'NVIDIA', score: 160 },
-        { id: 'amd-rx6700', name: 'AMD Radeon RX 6700 XT', price: 38000, brand: 'AMD', score: 180 }
-      ],
-      ram: [
-        { id: 'corsair-8gb-3200', name: 'Corsair Vengeance 8GB DDR4-3200', price: 2200 },
-        { id: 'gskill-16gb-3200', name: 'G.SKILL 16GB (2x8) DDR4-3200', price: 4200 },
-        { id: 'corsair-32gb-ddr5', name: 'Corsair 32GB DDR5-5200', price: 12000 }
-      ],
-      storage: [
-        { id: 'samsung-970-500', name: 'Samsung 970 EVO Plus 500GB (NVMe)', price: 3800 },
-        { id: 'samsung-980-1tb', name: 'Samsung 980 PRO 1TB (NVMe)', price: 9000 }
-      ]
-    };
-
-    function populateUpgradeSelectors() {
-      const mappings = [
-        { cur: 'cur-cpu', new: 'new-cpu', type: 'cpu' },
-        { cur: 'cur-gpu', new: 'new-gpu', type: 'gpu' },
-        { cur: 'cur-ram', new: 'new-ram', type: 'ram' },
-        { cur: 'cur-storage', new: 'new-storage', type: 'storage' }
-      ];
-      mappings.forEach(m => {
-        const cur = document.getElementById(m.cur);
-        const neu = document.getElementById(m.new);
-        if (!cur || !neu) return;
-        cur.innerHTML = '';
-        neu.innerHTML = '';
-        catalog[m.type].forEach(item => {
-          const o1 = document.createElement('option'); o1.value = item.id; o1.textContent = item.name + ' — ₹' + item.price.toLocaleString();
-          const o2 = o1.cloneNode(true);
-          cur.appendChild(o1); neu.appendChild(o2);
-        });
-      });
-    }
-
     function attachRepairHandlers() {
       const serviceSel = document.getElementById('service-select');
       if (!serviceSel) return;
@@ -657,10 +596,6 @@
       const el = document.getElementById('repair-estimate');
       if (el) el.textContent = 'Estimated Repair Cost: ₹' + total.toLocaleString();
       return total;
-    }
-
-    function getItemById(type, id) {
-      return catalog[type].find(i => i.id === id) || null;
     }
 
     function submitCustomBuild() {
@@ -725,38 +660,17 @@
       window.location.hash = '#thank-message';
     }
 
-    function simulateUpgrade() {
+    function submitUpgradeForm() {
       const form = document.getElementById('upgrade-form');
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
-
-      const name = form.elements['name'].value;
-      const email = form.elements['email'].value;
-
-      const curCpu = document.getElementById('cur-cpu').value;
-      const newCpu = document.getElementById('new-cpu').value;
-      const curGpu = document.getElementById('cur-gpu').value;
-      const newGpu = document.getElementById('new-gpu').value;
-      const curRam = document.getElementById('cur-ram').value;
-      const newRam = document.getElementById('new-ram').value;
-      const curStorage = document.getElementById('cur-storage').value;
-      const newStorage = document.getElementById('new-storage').value;
-
-      const curItems = [getItemById('cpu', curCpu), getItemById('gpu', curGpu), getItemById('ram', curRam), getItemById('storage', curStorage)];
-      const newItems = [getItemById('cpu', newCpu), getItemById('gpu', newGpu), getItemById('ram', newRam), getItemById('storage', newStorage)];
-
-      let curTotal = 0, newTotal = 0, curScore = 0, newScore = 0;
-      curItems.forEach(i => { if (i) { curTotal += i.price; curScore += (i.score || 0); } });
-      newItems.forEach(i => { if (i) { newTotal += i.price; newScore += (i.score || 0); } });
-
-      const delta = newTotal - curTotal;
-      const pct = curScore ? Math.round(((newScore - curScore) / curScore) * 100) : 0;
-
-      document.getElementById('upgrade-price').textContent = `Current parts total: ₹${curTotal.toLocaleString()} — Upgraded parts total: ₹${newTotal.toLocaleString()} — Price change: ₹${delta.toLocaleString()}`;
-      document.getElementById('upgrade-performance').textContent = `Estimated performance delta: ${pct}% (score ${curScore} → ${newScore})`;
-      document.getElementById('upgrade-result').style.display = 'block';
+      const data = {};
+      for (let el of form.elements) {
+        if (!el.name) continue;
+        data[el.name] = el.value;
+      }
 
       fetch("https://formsubmit.co/ajax/9a355cec7b4cde6879c4a0b58f3a3419", {
         method: "POST",
@@ -765,20 +679,16 @@
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            _subject: "New PC Upgrade Plan from XAZAtech",
-            Customer_Name: name,
-            Customer_Email: email,
-            Price_Change: `₹${delta.toLocaleString()}`,
-            New_Total: `₹${newTotal.toLocaleString()}`
+            _subject: "New PC Upgrade Request from XAZAtech",
+            ...data
         })
       })
       .then(response => response.json())
-      .then(response => {
-        console.log('Upgrade email sent successfully!', response);
-        form.reset();
-        window.location.hash = '#thank-message';
-      })
-      .catch(error => console.error('Failed to send upgrade email:', error));
+      .then(response => console.log('Upgrade email sent successfully!', response))
+      .catch(error => console.error('Failed to send email:', error));
+
+      form.reset();
+      window.location.hash = '#thank-message';
     }
 
     function submitForm(formId) {
@@ -822,7 +732,6 @@
     }
 
     window.onload = function () {
-      populateUpgradeSelectors();
       attachRepairHandlers();
     };
   </script>
