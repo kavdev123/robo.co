@@ -357,7 +357,7 @@
     <!-- Home View Container -->
     <div id="home-view">
       <section class="jumbotron">
-        <h1 class="jumbotron-heading">Build, Repair, Upgrade</h1>
+        <h1 class="jumbotron-heading">Knowledge is Power</h1>
         <p class="lead">India's leading PC Building and Repair brand. Get your custom PC or repairs done by experts.</p>
       </section>
 
@@ -753,27 +753,40 @@
     function fetchTechNews() {
       const container = document.getElementById('news-container');
       const rssUrl = 'https://news.google.com/rss/search?q=technology+hardware+pc+gaming&hl=en-IN&gl=IN&ceid=IN:en';
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl);
 
-      fetch(apiUrl)
-        .then(response => response.json())
+      fetch(proxyUrl)
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then(str => new window.DOMParser().parseFromString(str, 'text/xml'))
         .then(data => {
-          if (data.status === 'ok' && data.items) {
+          const items = data.querySelectorAll('item');
+          if (items.length > 0) {
             container.innerHTML = '';
-            // Display top 6 news articles
-            data.items.slice(0, 6).forEach(item => {
-              const pubDate = new Date(item.pubDate).toLocaleDateString();
+            let count = 0;
+            items.forEach(item => {
+              if (count >= 6) return;
+              const title = item.querySelector('title')?.textContent || 'No Title';
+              const link = item.querySelector('link')?.textContent || '#';
+              const pubDate = item.querySelector('pubDate')?.textContent ? new Date(item.querySelector('pubDate').textContent).toLocaleDateString() : '';
+              const description = item.querySelector('description')?.textContent || '';
+              
+              const cleanDesc = description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...';
+
               const div = document.createElement('div');
               div.className = 'news-item';
               div.innerHTML = `
-                <h5><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h5>
+                <h5><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></h5>
                 <p><small style="color: #40e0d0;">Published: ${pubDate}</small></p>
-                <p>${item.description ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + '...' : ''}</p>
+                <p>${cleanDesc}</p>
               `;
               container.appendChild(div);
+              count++;
             });
           } else {
-            container.innerHTML = '<p style="text-align: center; color: #ff5757;">Failed to load tech news at this time.</p>';
+            container.innerHTML = '<p style="text-align: center; color: #ff5757;">No tech news articles found.</p>';
           }
         })
         .catch(error => {
