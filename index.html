@@ -195,6 +195,47 @@
       color: #ccc !important;
     }
 
+    /* Professional Aligned Checkbox Grid Styling */
+    #repair-services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
+      background: #192841;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #40e0d0;
+    }
+
+    .repair-service-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: #2c3e50;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(64, 224, 208, 0.3);
+      cursor: pointer;
+      font-size: 0.75rem;
+      color: #ffffff;
+      margin-bottom: 0 !important;
+      transition: all 0.2s ease;
+    }
+
+    .repair-service-label:hover {
+      border-color: #40e0d0;
+      background-color: #243442;
+    }
+
+    .repair-service-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #40e0d0;
+      cursor: pointer;
+      margin: 0;
+      border: none;
+      background: transparent !important;
+    }
+
     .btn-custom {
       display: inline-block;
       background-color: #40e0d0;
@@ -374,7 +415,7 @@
       </form>
     </section>
 
-    <!-- PC Repair Request Form -->
+    <!-- PC Repair Request Form with Professional Checkboxes -->
     <section id="pcrepair" class="page-section">
       <h2>PC Repair Request</h2>
       <form id="pcrepair-form">
@@ -472,19 +513,19 @@
 
         <div class="form-group">
           <label>Service Options & Estimated Costs</label>
-          <div id="repair-services" style="background:#192841;padding:10px;border-radius:8px;">
-            <label><input type="checkbox" name="serviceOptions" value="diagnostics" class="repair-service" data-price="500" /> Diagnostics — ₹500</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="thermal" class="repair-service" data-price="800" /> Thermal Paste & Cleaning — ₹800</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="os" class="repair-service" data-price="1500" /> OS Reinstall — ₹1500</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="virus" class="repair-service" data-price="1200" /> Virus/Malware Cleanup — ₹1200</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="data-basic" class="repair-service" data-price="3000" /> Data Recovery (Basic) — ₹3000</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="data-adv" class="repair-service" data-price="8000" /> Data Recovery (Advanced) — ₹8000</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="screen" class="repair-service" data-price="6000" /> Screen Replacement (Laptop) — ₹6000</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="battery" class="repair-service" data-price="3000" /> Battery Replacement (Laptop) — ₹3000</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="keyboard" class="repair-service" data-price="1200" /> Keyboard Replacement — ₹1200</label><br>
-            <label><input type="checkbox" name="serviceOptions" value="liquid" class="repair-service" data-price="1500" /> Liquid Damage Inspection — ₹1500</label>
+          <div id="repair-services">
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="diagnostics" class="repair-service" data-price="500" /> Diagnostics — ₹500</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="thermal" class="repair-service" data-price="800" /> Thermal Paste & Cleaning — ₹800</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="os" class="repair-service" data-price="1500" /> OS Reinstall — ₹1500</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="virus" class="repair-service" data-price="1200" /> Virus/Malware Cleanup — ₹1200</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="data-basic" class="repair-service" data-price="3000" /> Data Recovery (Basic) — ₹3000</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="data-adv" class="repair-service" data-price="8000" /> Data Recovery (Advanced) — ₹8000</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="screen" class="repair-service" data-price="6000" /> Screen Replacement (Laptop) — ₹6000</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="battery" class="repair-service" data-price="3000" /> Battery Replacement (Laptop) — ₹3000</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="keyboard" class="repair-service" data-price="1200" /> Keyboard Replacement — ₹1200</label>
+            <label class="repair-service-label"><input type="checkbox" name="serviceOptions" value="liquid" class="repair-service" data-price="1500" /> Liquid Damage Inspection — ₹1500</label>
           </div>
-          <div id="repair-estimate" style="margin-top:8px;color:#40e0d0;">Estimated Repair Cost: ₹0</div>
+          <div id="repair-estimate" style="margin-top:10px;color:#40e0d0;font-weight:bold;">Estimated Repair Cost: ₹0</div>
         </div>
 
         <div class="form-group">
@@ -499,7 +540,7 @@
       </form>
     </section>
 
-    <!-- Upgrade Simulator Form with Typed-In Current Specs -->
+    <!-- Upgrade Simulator Form -->
     <section id="upgrade" class="page-section">
       <h2>PC Upgrade Request</h2>
       <form id="upgrade-form">
